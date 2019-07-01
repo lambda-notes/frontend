@@ -1,11 +1,16 @@
 import React from 'react';
+import styled from 'styled-components';
 
 const Notes = () => {
   return (
-    <div>
+    <Styles>
       <h1>Notes</h1>
-    </div>
+    </Styles>
   );
 };
 
 export default Notes;
+
+const Styles = styled.div`
+  background: white;
+`;

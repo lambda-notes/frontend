@@ -16,11 +16,11 @@ function App() {
     <>
       <GlobalStyles />
       <Styles>
-        <Route exact path='/landing' component={Landing} />
+        <Route exact path='/' component={Landing} />
         <Route path='/login' component={Auth} />
         <div className='main-view'>
-          <Route exact path='/' component={SideNav} />
-          <Route exact path='/' component={MainDashboard} />
+          <Route path='/dashboard' component={SideNav} />
+          <Route path='/dashboard' component={MainDashboard} />
         </div>
       </Styles>
     </>
