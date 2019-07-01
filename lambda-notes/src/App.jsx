@@ -10,12 +10,14 @@ import Auth from './components/Auth';
 import MainDashboard from './components/MainDashboard';
 import Landing from './components/Landing';
 import SideNav from './components/SideNav';
+import Youtube from './components/Youtube';
 
 function App() {
   return (
     <>
       <GlobalStyles />
       <Styles>
+        <Route exact path='/youtube' component={Youtube} />
         <Route exact path='/landing' component={Landing} />
         <Route path='/login' component={Auth} />
         <div className='main-view'>
