@@ -1,8 +1,9 @@
 import React from 'react';
 
-import TopNav from './TopNav';
+// component imports
 import AdminDash from '../AdminDash';
 import NotesDash from '../NotesDash';
+import TopNav from './TopNav';
 
 const MainDash = () => {
   const isAdmin = false;
