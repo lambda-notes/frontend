@@ -2,10 +2,16 @@ import React from 'react';
 
 const Auth = () => {
   return (
-    <div>
-      <h1>Auth</h1>
-    </div>
+    <a href={'https://lambda-school-notes.herokuapp.com/auth/github'}>
+      <button>Sign up with Github</button>
+    </a>
   );
 };
+
+// const Login = () => {
+//   <a href={'https://lambda-school-notes.herokuapp.com/auth/github'}>
+//     <button>Login with Github</button>
+//   </a>
+// }
 
 export default Auth;
