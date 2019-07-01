@@ -21,14 +21,14 @@ function App() {
 
   const { user, isAdmin } = state;
 
-  const url = 'https://lambda-school-notes.herokuapp.com/api/restricted';
+  // const url = 'https://lambda-school-notes.herokuapp.com/api/restricted';
 
-  useEffect(() => {
-    axios
-      .post(`${url}/user/1`)
-      .then(res => dispatch({ type: 'GET_USER', payload: res.data.user }))
-      .catch(err => console.log(err));
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .post(`${url}/user/1`)
+  //     .then(res => dispatch({ type: 'GET_USER', payload: res.data.user }))
+  //     .catch(err => console.log(err));
+  // }, []);
 
   return (
     <>

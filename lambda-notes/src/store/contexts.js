@@ -1,4 +1,4 @@
 import { createContext } from 'react';
 
 export const globalContext = createContext();
-export const notesContext = notesContext();
+export const notesContext = createContext();
