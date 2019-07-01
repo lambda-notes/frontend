@@ -13,6 +13,4 @@ export default SubMenu;
 
 const Styles = styled.div`
   width: 220px;
-  /* min-width: 220px; */
-  /* max-width: 220px; */
 `;
