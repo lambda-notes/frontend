@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route } from 'react-router-dom';
 import styled from 'styled-components';
+import axios from 'axios';
+
+// data management
+import { useStateValue } from 'react-conflux';
+import { globalContext } from './store/contexts';
 
 // style imports
 import { GlobalStyles } from './styles';
@@ -12,6 +17,19 @@ import Landing from './components/Landing';
 import SideNav from './components/SideNav';
 
 function App() {
+  const [state, dispatch] = useStateValue(globalContext);
+
+  const { user, isAdmin } = state;
+
+  const url = 'https://lambda-school-notes.herokuapp.com/api/restricted';
+
+  useEffect(() => {
+    axios
+      .post(`${url}/user/1`)
+      .then(res => dispatch({ type: 'GET_USER', payload: res.data.user }))
+      .catch(err => console.log(err));
+  }, []);
+
   return (
     <>
       <GlobalStyles />

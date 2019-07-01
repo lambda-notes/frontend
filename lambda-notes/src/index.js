@@ -1,15 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, withRouter } from 'react-router-dom';
 import App from './App.jsx';
+import { BrowserRouter as Router, withRouter } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
+
+// data management
+import { StateProvider } from 'react-conflux';
+import { globalReducer } from './store/reducers/globalReducer';
+import { globalContext } from './store/contexts';
+import { notesReducer } from './store/reducers/notesReducer';
+import { notesContext } from './store/contexts';
 
 const AppWithRouter = withRouter(App);
 
 ReactDOM.render(
-  <Router>
-    <AppWithRouter />
-  </Router>,
+  <StateProvider reducer={globalReducer} stateContext={globalContext}>
+    <StateProvider reducer={notesReducer} stateContext={notesContext}>
+      <Router>
+        <AppWithRouter />
+      </Router>
+    </StateProvider>
+  </StateProvider>,
   document.getElementById('root')
 );
 
