@@ -18,4 +18,5 @@ export default NotesDash;
 
 const Styles = styled.div`
   display: flex;
+  height: calc(100vh - 70px);
 `;

@@ -13,4 +13,5 @@ export default Notes;
 
 const Styles = styled.div`
   background: white;
+  width: 100%;
 `;

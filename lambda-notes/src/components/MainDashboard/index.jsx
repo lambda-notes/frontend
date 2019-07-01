@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Route } from 'react-router-dom';
 
 // component imports
 import AdminDash from '../AdminDash';
@@ -12,7 +13,8 @@ const MainDash = () => {
   return (
     <Styles>
       <TopNav />
-      {isAdmin ? <AdminDash /> : <NotesDash />}
+      {isAdmin && <Route path='/dashboard/admin' component={AdminDash} />}
+      <Route exact path='/dashboard' component={NotesDash} />
     </Styles>
   );
 };
