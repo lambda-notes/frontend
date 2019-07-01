@@ -6,6 +6,7 @@ import axios from 'axios';
 // data management
 import { useStateValue } from 'react-conflux';
 import { globalContext } from './store/contexts';
+import { url } from './components/Auth/config';
 
 // style imports
 import { GlobalStyles } from './styles';
@@ -21,13 +22,17 @@ function App() {
 
   const { user, isAdmin } = state;
 
-  // const url = 'https://lambda-school-notes.herokuapp.com/api/restricted';
+  console.log(user);
 
+  // switch this to a post request with data
   // useEffect(() => {
   //   axios
-  //     .post(`${url}/user/1`)
-  //     .then(res => dispatch({ type: 'GET_USER', payload: res.data.user }))
-  //     .catch(err => console.log(err));
+  //     .get(`${url}/users/2`)
+  //     .then(res => {
+  //       localStorage.setItem('token', res.data.token);
+  //       dispatch({ type: 'GET_USER', payload: res.data.user });
+  //     })
+  //     .catch(err => dispatch({ type: 'GET_USER_FAIL', payload: err }));
   // }, []);
 
   return (

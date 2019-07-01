@@ -9,7 +9,7 @@ const TopNav = () => {
     <Styles>
       <div className='nav-links'>
         {holder.map(link => (
-          <Link to={`/dashboard/${link}`}>
+          <Link to={`/dashboard/${link}`} key={link}>
             <h3>{link}</h3>
           </Link>
         ))}
