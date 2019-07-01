@@ -24,6 +24,7 @@ export default SubMenu;
 
 const Styles = styled.div`
   width: 250px;
+  background: #f8f8f8;
 
   .header {
     display: flex;
@@ -44,7 +45,11 @@ const Styles = styled.div`
     padding: 3px 10px;
 
     &:nth-child(even) {
-      background: white;
+      background: #f8f8f8;
+    }
+
+    &:nth-child(odd) {
+      background: #f4f4f4;
     }
   }
 `;
