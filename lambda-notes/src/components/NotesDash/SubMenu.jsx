@@ -43,7 +43,7 @@ const Styles = styled.div`
     font-size: 1.2rem;
     padding: 3px 10px;
 
-    &:nth-child(2) {
+    &:nth-child(even) {
       background: white;
     }
   }
