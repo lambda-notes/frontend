@@ -1,11 +1,16 @@
 import React from 'react';
+import styled from 'styled-components';
 
 const SubMenu = () => {
   return (
-    <div>
+    <Styles>
       <h1>SubMenu</h1>
-    </div>
+    </Styles>
   );
 };
 
 export default SubMenu;
+
+const Styles = styled.div`
+  width: 220px;
+`;
