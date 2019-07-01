@@ -1,4 +1,6 @@
 import React from 'react';
+
+// component imports
 import SubMenu from './SubMenu';
 import Notes from './Notes';
 

@@ -19,7 +19,11 @@ const SideNav = () => {
 export default SideNav;
 
 const Styles = styled.div`
+  border: 1px solid red;
+  min-width: 320px;
+
   img {
+    /* logo */
     width: 150px;
   }
 `;

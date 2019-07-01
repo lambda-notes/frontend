@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
+import styled from 'styled-components';
 
 // style imports
 import { GlobalStyles } from './styles';
@@ -14,12 +15,23 @@ function App() {
   return (
     <>
       <GlobalStyles />
-      <Route exact path='/landing' component={Landing} />
-      <Route path='/login' component={Auth} />`
-      <Route exact path='/' component={SideNav} />
-      <Route exact path='/' component={MainDashboard} />
+      <Styles>
+        <Route exact path='/landing' component={Landing} />
+        <Route path='/login' component={Auth} />
+        <div className='main-view'>
+          <Route exact path='/' component={SideNav} />
+          <Route exact path='/' component={MainDashboard} />
+        </div>
+      </Styles>
     </>
   );
 }
 
 export default App;
+
+const Styles = styled.div`
+  .main-view {
+    display: flex;
+    height: 100vh;
+  }
+`;
