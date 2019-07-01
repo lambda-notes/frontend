@@ -33,18 +33,19 @@ const Styles = styled.div`
 
     a {
       text-decoration: none;
-
-      &:hover {
-        color: #131220;
-      }
     }
   }
 
   h3 {
     padding: 0.2rem 2.4rem;
-    color: #99979c;
+    color: #82838b;
     font-size: 16px;
-    font-weight: 700;
+    font-weight: 500;
     text-transform: capitalize;
+
+    &:hover {
+      color: #131220;
+      cursor: pointer;
+    }
   }
 `;
