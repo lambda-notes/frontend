@@ -5,13 +5,24 @@ export const Global = css`
     box-sizing: border-box;
   }
 
+  html {
+    font-size: 62.5%;
+  }
+
   body {
     margin: 0;
-    color: #282828;
-    background: #fcfcfa;
-    font-family: -apple-system, 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
-      'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    color: #21252a;
+    background: #f0f4f7;
+    font-family: 'Lato', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1 {
+  }
+
+  h2 {
+    font-size: 2.4rem;
+    font-weight: 700;
   }
 `;

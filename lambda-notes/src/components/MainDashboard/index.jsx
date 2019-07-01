@@ -20,6 +20,5 @@ const MainDash = () => {
 export default MainDash;
 
 const Styles = styled.div`
-  border: 1px solid blue;
   min-width: calc(100vw - 320px);
 `;
