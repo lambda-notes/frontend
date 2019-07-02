@@ -2,7 +2,7 @@ import React from 'react';
 
 const Auth = () => {
   return (
-    <a href={'http://localhost:8000/auth/github'}>
+    <a href={'https://lambda-school-notes.herokuapp.com/auth/github'}>
       <button>Sign up with Github</button>
     </a>
   );
