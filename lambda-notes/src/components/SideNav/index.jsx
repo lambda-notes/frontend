@@ -10,7 +10,7 @@ import Options from './Options';
 const SideNav = () => {
   return (
     <Styles>
-      <img src={logo} alt='Lambda Notes Logo' />
+      <img src={logo} alt="Lambda Notes Logo" />
       <Options />
     </Styles>
   );
@@ -22,6 +22,7 @@ const Styles = styled.div`
   min-width: 320px;
   background: #131220;
   color: #ffffff;
+  overflow-y: auto;
 
   img {
     /* logo */

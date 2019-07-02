@@ -16,3 +16,8 @@ export const UPDATE_NOTE = 'UPDATE_NOTE';
 export const UPDATE_NOTE_FAIL = 'UPDATE_NOTE_FAIL';
 export const NEW_NOTE = 'NEW_NOTE';
 export const DELETE_NOTE = 'DELETE_NOTE';
+
+// lessons
+export const GET_LESSONS = 'GET_LESSONS';
+export const GET_LESSONS_FAIL = 'GET_LESSONS_FAIL';
+export const LESSON_CLICKED = 'LESSON_CLICKED';
