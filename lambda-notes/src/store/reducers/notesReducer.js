@@ -10,7 +10,8 @@ import {
   MODIFY_CURRENT_NOTE,
   UPDATE_NOTE,
   UPDATE_NOTE_FAIL,
-  NEW_NOTE
+  NEW_NOTE,
+  DELETE_NOTE
 } from '../constants';
 
 const initialState = {
@@ -58,6 +59,7 @@ export const notesReducer = (state = initialState, action) => {
       action.payload.note = Value.fromJSON(parsed);
 
       let index = state.notes.findIndex(note => note.id === action.payload.id);
+      console.log(index);
       state.notes[index] = action.payload;
       return {
         ...state,
@@ -68,6 +70,14 @@ export const notesReducer = (state = initialState, action) => {
       return {
         ...state,
         error: action.payload
+      };
+    case DELETE_NOTE:
+      let num = state.notes.findIndex(note => note.id === action.payload);
+      console.log(action.payload);
+      console.log(num);
+      state.notes.splice(num, 1);
+      return {
+        ...state
       };
     case SET_CURRENT_NOTE:
       return {
@@ -97,6 +107,7 @@ export const notesReducer = (state = initialState, action) => {
             userID: '',
             note: Value.fromJSON(initialValue)
           },
+          noteTitle: '',
           newNote: action.payload
         };
       } else {

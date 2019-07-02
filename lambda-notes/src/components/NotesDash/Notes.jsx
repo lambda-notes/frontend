@@ -12,7 +12,8 @@ import {
   SET_CURRENT_NOTE,
   SET_NOTE_TITLE,
   GET_NOTES,
-  NEW_NOTE
+  NEW_NOTE,
+  DELETE_NOTE
 } from '../../store/constants';
 
 const Notes = () => {
@@ -58,9 +59,12 @@ const Notes = () => {
   };
 
   const deleteNote = () => {
+    dispatch({ type: DELETE_NOTE, payload: state.currentNote.id });
     axios
       .delete(`${url}/notes/${state.currentNote.id}`)
-      .then(res => console.log(res.data.message))
+      .then(res => {
+        console.log(res.data.id);
+      })
       .catch(err => console.log(err));
   };
 
