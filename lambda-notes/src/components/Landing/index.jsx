@@ -10,7 +10,7 @@ import { SET_USER } from '../../store/constants';
 
 // Firebase App (the core Firebase SDK) is always required and
 // must be listed before other Firebase SDKs
-import firebaseConfig from './firebaseConfig';
+import firebaseConfig from './fbaseConfig';
 import { url } from '../Auth/config';
 let firebase = require('firebase/app');
 require('firebase/auth');
