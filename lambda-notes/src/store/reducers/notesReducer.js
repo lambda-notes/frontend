@@ -13,7 +13,7 @@ const initialState = {
   notes: [],
   isLoading: false,
   error: '',
-  currentNote: Value.fromJSON(initialValue),
+  currentNote: { note: Value.fromJSON(initialValue) },
   noteTitle: ''
 };
 
@@ -41,7 +41,7 @@ export const notesReducer = (state = initialState, action) => {
         error: action.payload
       };
     case SET_CURRENT_NOTE:
-      console.log('Currrent Note', action.payload);
+      console.log(action.payload);
       return {
         ...state,
         currentNote: action.payload

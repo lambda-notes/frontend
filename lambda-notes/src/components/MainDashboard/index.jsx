@@ -16,7 +16,7 @@ const MainDash = () => {
       <TopNav />
       {isAdmin && <Route path="/dashboard/admin" component={AdminDash} />}
       <Route path="/dashboard" component={NotesDash} />
-      <Route path="/dashboard/:id" component={Note} />
+      {/* <Route path="/dashboard/:id" component={Note} /> */}
     </Styles>
   );
 };

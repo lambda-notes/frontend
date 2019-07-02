@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import { Value } from 'slate';
 
 // data management
 import { useStateValue } from 'react-conflux';
@@ -15,13 +16,11 @@ const NotesDash = () => {
   const [state, dispatch] = useStateValue(notesContext);
   const { notes } = state;
 
-  // console.log(notes);
-
   useEffect(() => {
     axios
       .get(`${url}/notes/user/2`)
       .then(res => {
-        console.log(res.data.notes);
+        res.data.notes.forEach(note => (note.note = Value.fromJSON(note.note)));
         dispatch({ type: 'GET_NOTES', payload: res.data.notes });
       })
       .catch(err => dispatch({ type: 'GET_NOTES_FAIL', payload: err }));
@@ -39,16 +38,11 @@ const NotesDash = () => {
       .catch(err => dispatch({ type: 'UPDATE_NOTE_FAIL', payload: err }));
   };
 
-  const deleteNote = id => {
+  const deleteNote = () => {
     axios
-      .delete(`${url}/notes/${id}`)
-      .then(res =>
-        dispatch({
-          type: 'GET_NOTES',
-          payload: res.data /* confirmation? */
-        })
-      )
-      .catch(err => dispatch({ type: 'GET_NOTES_FAIL', payload: err }));
+      .delete(`${url}/notes/${state.currentNote.id}`)
+      .then(res => console.log(res.data.message))
+      .catch(err => console.log(err));
   };
 
   return (

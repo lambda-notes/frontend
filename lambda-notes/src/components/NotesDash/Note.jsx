@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import { Editor } from 'slate-react';
-// import { Value } from 'slate';
+import { Value } from 'slate';
 import Code from '@convertkit/slate-code';
 import PasteLinkify from 'slate-paste-linkify';
 import InsertImages from 'slate-drop-or-paste-images';
 import DropOrPasteImages from 'slate-drop-or-paste-images';
 import { url } from '../Auth/config';
-// import initialValue from './value.json';
+import initialValue from './value.json';
 
 import { useStateValue } from 'react-conflux';
 import { notesContext } from '../../store/contexts';
@@ -95,15 +95,17 @@ const Note = props => {
   const [state, dispatch] = useStateValue(notesContext);
 
   const onChange = ({ value }) => {
+    console.log(state.currentNote.note.document.text);
+    // console.log(value.document.text);
     // Check to see if the document has changed before saving.
-    // if (value.document !== state.currentNote) {
-    // const content = JSON.stringify(value.toJSON());
-    // localStorage.setItem('content', value);
-    // }
-    // props.setState({ value });
+    if (value.document !== state.currentNote.note.document) {
+      const content = JSON.stringify(value);
+      localStorage.setItem('content', content);
+    }
+
     dispatch({
       type: SET_CURRENT_NOTE,
-      payload: value
+      payload: { ...state.currentNote, note: value }
     });
   };
   const handleKeyDown = (event, editor, next) => {
@@ -138,13 +140,13 @@ const Note = props => {
         return next();
     }
   };
-
-  console.log(state.currentNote.document);
+  console.log(state.currentNote.note.document.text);
+  console.log(Value.fromJSON(initialValue));
   return (
     <Styles>
       <Editor
         className="editor"
-        value={state.currentNote}
+        value={state.currentNote.note || Value.fromJSON(initialValue)}
         onChange={onChange}
         onKeyDown={handleKeyDown}
         commands={commands}

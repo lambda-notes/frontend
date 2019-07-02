@@ -16,11 +16,11 @@ const SubMenu = ({ notes }) => {
     let note = state.notes.find(note => {
       return note.id === id;
     });
-    let res = JSON.parse(note.note);
-    // console.log(note);
-    const resValue = Value.fromJSON(res);
-    console.log(resValue);
-    dispatch({ type: SET_CURRENT_NOTE, payload: resValue });
+
+    dispatch({
+      type: SET_CURRENT_NOTE,
+      payload: note
+    });
   };
 
   return (

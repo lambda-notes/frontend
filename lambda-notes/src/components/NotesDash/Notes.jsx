@@ -12,19 +12,23 @@ import { SET_CURRENT_NOTE, SET_NOTE_TITLE } from '../../store/constants';
 
 const Notes = () => {
   const existingValue = JSON.parse(localStorage.getItem('content'));
+  const [bool, setBool] = useState(true);
   const [state, dispatch] = useStateValue(notesContext);
 
-  if (existingValue) {
+  if (existingValue && bool) {
+    console.log('if');
+    setBool(false);
+    const resValue = Value.fromJSON(existingValue);
     dispatch({
       type: SET_CURRENT_NOTE,
-      payload: existingValue.toJSON()
+      payload: { ...state.currentNote, note: resValue }
     });
   }
 
-  // const [state, setState] = useState({ value: Value.fromJSON(initialValue) });
   const saveNote = e => {
     e.preventDefault();
-    const note = JSON.stringify(state.currentNote);
+    const note = JSON.stringify(state.currentNote.note);
+    console.log('saved note', note);
     let title = state.noteTitle;
     if (title === '') {
       title = 'New Note';
@@ -36,7 +40,18 @@ const Notes = () => {
         note: note,
         noteTitle: title
       })
-      .then(res => console.log(res.message))
+      .then(res => {
+        localStorage.clear();
+        state.notes.push(res.data.note);
+        console.log(res.data.message);
+      })
+      .catch(err => console.log(err));
+  };
+
+  const deleteNote = () => {
+    axios
+      .delete(`${url}/notes/${state.currentNote.id}`)
+      .then(res => console.log(res.data.message))
       .catch(err => console.log(err));
   };
 
@@ -48,11 +63,10 @@ const Notes = () => {
   return (
     <Styles>
       <button onClick={saveNote}>Save Note</button>
+      <button onClick={deleteNote}>Delete Note</button>
       <input
         onChange={handleChange}
-        value={
-          state.currentNote ? state.currentNote.noteTitle : state.noteTitle
-        }
+        value={state.noteTitle}
         placeholder="Title"
       />
       <Note />
