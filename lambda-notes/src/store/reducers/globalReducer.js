@@ -4,7 +4,8 @@ import {
   LOGOUT,
   GET_LESSONS,
   GET_LESSONS_FAIL,
-  LESSON_CLICKED
+  LESSON_CLICKED,
+  SET_USER
 } from '../constants';
 
 const initialState = {
@@ -32,6 +33,11 @@ export const globalReducer = (state = initialState, action) => {
       return {
         ...state,
         error: 'Failed to fetch user.'
+      };
+    case SET_USER:
+      return {
+        ...state,
+        user: action.payload
       };
     case LOGOUT:
       // destroy token?

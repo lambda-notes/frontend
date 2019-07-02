@@ -13,7 +13,7 @@ import { url } from '../Auth/config';
 import SubMenu from './SubMenu';
 import Notes from './Notes';
 
-const NotesDash = () => {
+const NotesDash = props => {
   const [state, dispatch] = useStateValue(notesContext);
   const [globalState, globalDispatch] = useStateValue(globalContext);
   const { notes } = state;
@@ -36,12 +36,10 @@ const NotesDash = () => {
     return notes.filter(note => note.notesLessonID === selectedLesson);
   };
 
-  console.log(filterNotes());
-
   return (
     <Styles>
       <SubMenu notes={filterNotes()} />
-      <Notes notes={notes} />
+      <Notes props={props} notes={notes} />
     </Styles>
   );
 };
