@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { Editor } from 'slate-react';
 import Code from '@convertkit/slate-code';
@@ -8,7 +8,7 @@ import DropOrPasteImages from 'slate-drop-or-paste-images';
 
 import { useStateValue } from 'react-conflux';
 import { notesContext } from '../../store/contexts';
-import { MODIFY_CURRENT_NOTE } from '../../store/constants';
+import { MODIFY_CURRENT_NOTE, SET_CURRENT_NOTE } from '../../store/constants';
 
 class Image extends React.Component {
   state = {};
@@ -160,8 +160,8 @@ export default Note;
 const Styles = styled.div`
   .editor {
     line-height: 1.4;
-    height: 100%;
-    min-height: 800px;
+    height: 85%;
+    min-height: 600px;
     font-size: 1.3rem;
     padding: 10px;
     margin-top: 10px;

@@ -12,7 +12,7 @@ import { url } from '../Auth/config';
 import SubMenu from './SubMenu';
 import Notes from './Notes';
 
-const NotesDash = () => {
+const NotesDash = props => {
   const [state, dispatch] = useStateValue(notesContext);
   const { notes } = state;
 
@@ -32,7 +32,7 @@ const NotesDash = () => {
   return (
     <Styles>
       <SubMenu notes={notes} />
-      <Notes notes={notes} />
+      <Notes props={props} notes={notes} />
     </Styles>
   );
 };
