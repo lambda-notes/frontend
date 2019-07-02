@@ -6,6 +6,7 @@ import { Route } from 'react-router-dom';
 import AdminDash from '../AdminDash';
 import NotesDash from '../NotesDash';
 import TopNav from './TopNav';
+import Note from '../NotesDash/Note';
 
 const MainDash = () => {
   const isAdmin = false;
@@ -13,8 +14,9 @@ const MainDash = () => {
   return (
     <Styles>
       <TopNav />
-      {isAdmin && <Route path='/dashboard/admin' component={AdminDash} />}
-      <Route exact path='/dashboard' component={NotesDash} />
+      {isAdmin && <Route path="/dashboard/admin" component={AdminDash} />}
+      <Route path="/dashboard" component={NotesDash} />
+      <Route path="/dashboard/:id" component={Note} />
     </Styles>
   );
 };
