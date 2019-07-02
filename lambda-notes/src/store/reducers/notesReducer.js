@@ -73,8 +73,6 @@ export const notesReducer = (state = initialState, action) => {
       };
     case DELETE_NOTE:
       let num = state.notes.findIndex(note => note.id === action.payload);
-      console.log(action.payload);
-      console.log(num);
       state.notes.splice(num, 1);
       return {
         ...state
