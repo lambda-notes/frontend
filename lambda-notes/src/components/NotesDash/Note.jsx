@@ -89,24 +89,6 @@ const plugins = [
 
 const Note = props => {
   const [state, dispatch] = useStateValue(notesContext);
-  // let id = props.props.props.location.pathname.slice(11);
-
-  // useEffect(() => {
-  //   let note;
-  //   if (id) {
-  //     note = state.notes.find(note => {
-  //       return note.id === id;
-  //     });
-  //   }
-  //   console.log(note);
-  //   // console.log(JSON.stringify(note.note));
-  //   if (note) {
-  //     dispatch({
-  //       type: SET_CURRENT_NOTE,
-  //       payload: note
-  //     });
-  //   }
-  // }, [dispatch, id, props.props.props.match.params.id, state.notes]);
 
   const onChange = ({ value }) => {
     // console.log(state.currentNote.note.document.text);
