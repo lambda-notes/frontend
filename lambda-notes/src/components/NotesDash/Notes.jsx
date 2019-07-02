@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Note from './Note';
 import { Value } from 'slate';
-import initialValue from './value.json';
 import axios from 'axios';
 import { url } from '../Auth/config';
 
@@ -11,8 +10,8 @@ import { notesContext } from '../../store/contexts';
 import {
   SET_CURRENT_NOTE,
   SET_NOTE_TITLE,
-  GET_NOTES,
-  NEW_NOTE
+  NEW_NOTE,
+  DELETE_NOTE
 } from '../../store/constants';
 
 const Notes = () => {
@@ -33,7 +32,6 @@ const Notes = () => {
   const saveNote = e => {
     e.preventDefault();
     const note = JSON.stringify(state.currentNote.note);
-    console.log('saved note', note);
     let title = state.noteTitle;
     if (title === '') {
       title = 'New Note';
@@ -58,9 +56,12 @@ const Notes = () => {
   };
 
   const deleteNote = () => {
+    dispatch({ type: DELETE_NOTE, payload: state.currentNote.id });
     axios
       .delete(`${url}/notes/${state.currentNote.id}`)
-      .then(res => console.log(res.data.message))
+      .then(res => {
+        console.log(res.data.id);
+      })
       .catch(err => console.log(err));
   };
 
@@ -70,7 +71,7 @@ const Notes = () => {
     if (state.noteTitle !== '') {
       note.noteTitle = state.noteTitle;
     }
-    console.log(note);
+
     axios
       .put(`${url}/notes/${state.currentNote.id}`, note)
       .then(res => {

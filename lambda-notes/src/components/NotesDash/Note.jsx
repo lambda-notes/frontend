@@ -1,14 +1,10 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React from 'react';
 import styled from 'styled-components';
 import { Editor } from 'slate-react';
-import { Value } from 'slate';
 import Code from '@convertkit/slate-code';
 import PasteLinkify from 'slate-paste-linkify';
 import InsertImages from 'slate-drop-or-paste-images';
 import DropOrPasteImages from 'slate-drop-or-paste-images';
-import { url } from '../Auth/config';
-import initialValue from './value.json';
 
 import { useStateValue } from 'react-conflux';
 import { notesContext } from '../../store/contexts';
