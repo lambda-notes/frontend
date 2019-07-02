@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 import { Editor } from 'slate-react';
 import { Value } from 'slate';
 import Code from '@convertkit/slate-code';
@@ -142,17 +143,30 @@ class Note extends React.Component {
         const existingValue = JSON.parse(localStorage.getItem('content'));
 
         return (
-            <Editor
-                value={this.state.value}
-                onChange={this.onChange}
-                // onKeyDown={handleKeyDown}
-                commands={this.commands}
-                queries={this.queries}
-                renderNode={this.renderNode}
-                plugins={this.plugins}
-            />
+            <Styles>
+                <Editor
+                    className="editor"
+                    value={this.state.value}
+                    onChange={this.onChange}
+                    // onKeyDown={handleKeyDown}
+                    commands={this.commands}
+                    queries={this.queries}
+                    renderNode={this.renderNode}
+                    plugins={this.plugins}
+                />
+            </Styles>
         );
     }
 }
 
 export default Note;
+
+const Styles = styled.div`
+    padding: 10px;
+    .editor {
+        line-height: 1.4;
+        height: 100%;
+        min-height: 800px;
+        font-size: 1.3rem;
+    }
+`;

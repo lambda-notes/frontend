@@ -5,7 +5,6 @@ import Note from './Note';
 const Notes = () => {
     return (
         <Styles>
-            <h1>Notes</h1>
             <Note />
         </Styles>
     );
