@@ -140,13 +140,13 @@ const Note = props => {
         return next();
     }
   };
-  console.log(state.currentNote.note.document.text);
-  console.log(Value.fromJSON(initialValue));
+  console.log(state.currentNote);
+  // console.log(Value.fromJSON(initialValue));
   return (
     <Styles>
       <Editor
         className="editor"
-        value={state.currentNote.note || Value.fromJSON(initialValue)}
+        value={state.currentNote.note}
         onChange={onChange}
         onKeyDown={handleKeyDown}
         commands={commands}

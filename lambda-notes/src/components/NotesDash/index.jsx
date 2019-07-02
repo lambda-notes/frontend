@@ -20,7 +20,10 @@ const NotesDash = () => {
     axios
       .get(`${url}/notes/user/2`)
       .then(res => {
-        res.data.notes.forEach(note => (note.note = Value.fromJSON(note.note)));
+        res.data.notes.forEach(note => {
+          let parsed = JSON.parse(note.note);
+          note.note = Value.fromJSON(parsed);
+        });
         dispatch({ type: 'GET_NOTES', payload: res.data.notes });
       })
       .catch(err => dispatch({ type: 'GET_NOTES_FAIL', payload: err }));
@@ -36,13 +39,6 @@ const NotesDash = () => {
         })
       )
       .catch(err => dispatch({ type: 'UPDATE_NOTE_FAIL', payload: err }));
-  };
-
-  const deleteNote = () => {
-    axios
-      .delete(`${url}/notes/${state.currentNote.id}`)
-      .then(res => console.log(res.data.message))
-      .catch(err => console.log(err));
   };
 
   return (

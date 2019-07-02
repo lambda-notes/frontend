@@ -17,6 +17,8 @@ const SubMenu = ({ notes }) => {
       return note.id === id;
     });
 
+    // console.log(JSON.stringify(note.note));
+
     dispatch({
       type: SET_CURRENT_NOTE,
       payload: note

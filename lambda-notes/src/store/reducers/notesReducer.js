@@ -13,7 +13,15 @@ const initialState = {
   notes: [],
   isLoading: false,
   error: '',
-  currentNote: { note: Value.fromJSON(initialValue) },
+  currentNote: {
+    dateCreated: '',
+    dateUpdated: '',
+    id: '',
+    noteTitle: '',
+    noteLessonID: '',
+    userID: '',
+    note: Value.fromJSON(initialValue)
+  },
   noteTitle: ''
 };
 
