@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Editor } from 'slate-react';
-import { Value } from 'slate';
+// import { Value } from 'slate';
 import Code from '@convertkit/slate-code';
 import PasteLinkify from 'slate-paste-linkify';
 import InsertImages from 'slate-drop-or-paste-images';
 import DropOrPasteImages from 'slate-drop-or-paste-images';
-import initialValue from './value.json';
+// import initialValue from './value.json';
+
+import { useStateValue } from 'react-conflux';
+import { notesContext } from '../../store/contexts';
+import { SET_CURRENT_NOTE } from '../../store/constants';
 
 class Image extends React.Component {
     state = {};
@@ -36,78 +40,72 @@ class Image extends React.Component {
         );
     }
 }
-
-class Note extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            value: Value.fromJSON(initialValue)
-        };
+const commands = {
+    wrapLink(change, url) {
+        change.wrapInline({ type: 'link', data: { url } });
+    },
+    unwrapLink(change) {
+        change.unwrapInline('link');
     }
+};
 
-    componentDidMount = () => {
-        let existingValue = JSON.parse(localStorage.getItem('content'));
-        if (existingValue) {
-            this.setState.value = existingValue;
+const queries = {
+    isLinkActive(editor, value) {
+        const { inlines } = value;
+        const active = inlines.some(i => i.type === 'link');
+        return active;
+    }
+};
+const plugins = [
+    PasteLinkify(),
+    DropOrPasteImages({
+        insertImage: (transform, file) => {
+            return transform.insertBlock({
+                type: 'image',
+                isVoid: true,
+                data: { file }
+            });
         }
-    };
-    commands = {
-        wrapLink(change, url) {
-            change.wrapInline({ type: 'link', data: { url } });
-        },
-        unwrapLink(change) {
-            change.unwrapInline('link');
+    }),
+    InsertImages({
+        extensions: ['png', 'jpg'],
+        insertImage: (change, file) => {
+            return change.insertBlock({
+                type: 'image',
+                isVoid: true,
+                data: { file }
+            });
         }
-    };
-
-    queries = {
-        isLinkActive(editor, value) {
-            const { inlines } = value;
-            const active = inlines.some(i => i.type === 'link');
-            return active;
-        }
-    };
-    plugins = [
-        PasteLinkify(),
-        DropOrPasteImages({
-            insertImage: (transform, file) => {
-                return transform.insertBlock({
-                    type: 'image',
-                    isVoid: true,
-                    data: { file }
-                });
-            }
-        }),
-        InsertImages({
-            extensions: ['png', 'jpg'],
-            insertImage: (change, file) => {
-                return change.insertBlock({
-                    type: 'image',
-                    isVoid: true,
-                    data: { file }
-                });
-            }
-        }),
-        Code({
-            highlight: true,
+    }),
+    Code({
+        highlight: true,
+        block: 'code',
+        line: 'code-line',
+        classNames: {
             block: 'code',
-            line: 'code-line',
-            classNames: {
-                block: 'code',
-                line: 'code-line'
-            }
-        })
-    ];
-
-    onChange = ({ value }) => {
-        // Check to see if the document has changed before saving.
-        if (value.document !== this.state.value.document) {
-            const content = JSON.stringify(value.toJSON());
-            localStorage.setItem('content', content);
+            line: 'code-line'
         }
-        this.setState({ value });
+    })
+];
+const Note = props => {
+    const [state, dispatch] = useStateValue(notesContext);
+
+    const onChange = ({ value }) => {
+        console.log(state.currentNote);
+        console.log(value);
+
+        // Check to see if the document has changed before saving.
+        // if (value.document !== state.currentNote) {
+        // const content = JSON.stringify(value.toJSON());
+        // localStorage.setItem('content', value);
+        // }
+        // props.setState({ value });
+        dispatch({
+            type: SET_CURRENT_NOTE,
+            payload: value
+        });
     };
-    handleKeyDown = (event, editor, next) => {
+    const handleKeyDown = (event, editor, next) => {
         if (event.ctrlKey) {
             switch (event.key) {
                 case 'y':
@@ -124,7 +122,7 @@ class Note extends React.Component {
             return next();
         }
     };
-    renderNode = (props, next) => {
+    const renderNode = (props, next) => {
         const { node, attributes, children } = props;
         switch (node.type) {
             case 'image':
@@ -139,25 +137,22 @@ class Note extends React.Component {
                 return next();
         }
     };
-    render() {
-        const existingValue = JSON.parse(localStorage.getItem('content'));
 
-        return (
-            <Styles>
-                <Editor
-                    className="editor"
-                    value={this.state.value}
-                    onChange={this.onChange}
-                    // onKeyDown={handleKeyDown}
-                    commands={this.commands}
-                    queries={this.queries}
-                    renderNode={this.renderNode}
-                    plugins={this.plugins}
-                />
-            </Styles>
-        );
-    }
-}
+    return (
+        <Styles>
+            <Editor
+                className="editor"
+                value={state.currentNote}
+                onChange={onChange}
+                onKeyDown={handleKeyDown}
+                commands={commands}
+                queries={queries}
+                renderNode={renderNode}
+                plugins={plugins}
+            />
+        </Styles>
+    );
+};
 
 export default Note;
 

@@ -10,7 +10,7 @@ const SubMenu = ({ notes }) => {
             </div>
             {notes.map(note => {
                 return (
-                    <div className="note" key={note.dateCreated}>
+                    <div className="note" key={note.id}>
                         <p>{note.noteTitle}</p>
                         <p>{note.dateUpdated}</p>
                     </div>
