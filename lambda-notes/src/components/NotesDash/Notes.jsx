@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Note from './Note';
 import { Value } from 'slate';
@@ -14,13 +14,26 @@ import {
   DELETE_NOTE
 } from '../../store/constants';
 
-const Notes = () => {
+const Notes = props => {
   const existingValue = JSON.parse(localStorage.getItem('content'));
   const [bool, setBool] = useState(true);
   const [state, dispatch] = useStateValue(notesContext);
 
+  useEffect(() => {
+    if (props.props.location.pathname.slice(11)) {
+      let index = state.notes.find(
+        note => note.id == props.props.location.pathname.slice(11)
+      );
+      if (index) {
+        dispatch({
+          type: SET_CURRENT_NOTE,
+          payload: index
+        });
+      }
+    }
+  }, [dispatch, props.props.location.pathname, state.notes]);
+
   if (existingValue && bool) {
-    console.log('if');
     setBool(false);
     const resValue = Value.fromJSON(existingValue);
     dispatch({
@@ -117,7 +130,7 @@ const Notes = () => {
           </div>
         </div>
       ) : null}
-      {state.currentNote.id || state.newNote ? <Note /> : null}
+      {state.currentNote.id || state.newNote ? <Note props={props} /> : null}
     </Styles>
   );
 };

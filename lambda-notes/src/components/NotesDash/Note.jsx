@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { Editor } from 'slate-react';
 import Code from '@convertkit/slate-code';
@@ -8,7 +8,7 @@ import DropOrPasteImages from 'slate-drop-or-paste-images';
 
 import { useStateValue } from 'react-conflux';
 import { notesContext } from '../../store/contexts';
-import { MODIFY_CURRENT_NOTE } from '../../store/constants';
+import { MODIFY_CURRENT_NOTE, SET_CURRENT_NOTE } from '../../store/constants';
 
 class Image extends React.Component {
   state = {};
@@ -89,6 +89,24 @@ const plugins = [
 
 const Note = props => {
   const [state, dispatch] = useStateValue(notesContext);
+  // let id = props.props.props.location.pathname.slice(11);
+
+  // useEffect(() => {
+  //   let note;
+  //   if (id) {
+  //     note = state.notes.find(note => {
+  //       return note.id === id;
+  //     });
+  //   }
+  //   console.log(note);
+  //   // console.log(JSON.stringify(note.note));
+  //   if (note) {
+  //     dispatch({
+  //       type: SET_CURRENT_NOTE,
+  //       payload: note
+  //     });
+  //   }
+  // }, [dispatch, id, props.props.props.match.params.id, state.notes]);
 
   const onChange = ({ value }) => {
     // console.log(state.currentNote.note.document.text);
