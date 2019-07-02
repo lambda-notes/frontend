@@ -29,18 +29,6 @@ const NotesDash = () => {
       .catch(err => dispatch({ type: 'GET_NOTES_FAIL', payload: err }));
   }, [dispatch]);
 
-  const updateNote = (id, note) => {
-    axios
-      .put(`${url}/notes/${id}`, note)
-      .then(res =>
-        dispatch({
-          type: 'UPDATE_NOTE',
-          payload: res.data /* maybe? */
-        })
-      )
-      .catch(err => dispatch({ type: 'UPDATE_NOTE_FAIL', payload: err }));
-  };
-
   return (
     <Styles>
       <SubMenu notes={notes} />

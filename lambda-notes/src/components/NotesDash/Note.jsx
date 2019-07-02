@@ -12,7 +12,7 @@ import initialValue from './value.json';
 
 import { useStateValue } from 'react-conflux';
 import { notesContext } from '../../store/contexts';
-import { SET_CURRENT_NOTE } from '../../store/constants';
+import { MODIFY_CURRENT_NOTE } from '../../store/constants';
 
 class Image extends React.Component {
   state = {};
@@ -95,7 +95,7 @@ const Note = props => {
   const [state, dispatch] = useStateValue(notesContext);
 
   const onChange = ({ value }) => {
-    console.log(state.currentNote.note.document.text);
+    // console.log(state.currentNote.note.document.text);
     // console.log(value.document.text);
     // Check to see if the document has changed before saving.
     if (value.document !== state.currentNote.note.document) {
@@ -104,8 +104,8 @@ const Note = props => {
     }
 
     dispatch({
-      type: SET_CURRENT_NOTE,
-      payload: { ...state.currentNote, note: value }
+      type: MODIFY_CURRENT_NOTE,
+      payload: value
     });
   };
   const handleKeyDown = (event, editor, next) => {
@@ -140,10 +140,11 @@ const Note = props => {
         return next();
     }
   };
-  console.log(state.currentNote);
+  // console.log(state.currentNote);
   // console.log(Value.fromJSON(initialValue));
   return (
     <Styles>
+      <p className="h1">{state.currentNote.noteTitle}</p>
       <Editor
         className="editor"
         value={state.currentNote.note}
@@ -161,11 +162,16 @@ const Note = props => {
 export default Note;
 
 const Styles = styled.div`
-  padding: 10px;
   .editor {
     line-height: 1.4;
     height: 100%;
     min-height: 800px;
     font-size: 1.3rem;
+    padding: 10px;
+    margin-top: 10px;
+    box-shadow: 1px 1px 4px gray;
+  }
+  .h1 {
+    font-size: 2rem;
   }
 `;
