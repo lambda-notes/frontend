@@ -2,13 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-const holder = ['home', 'video', 'notes', 'misc'];
+const navButtons = ['home', 'video', 'notes', 'search'];
 
 const TopNav = () => {
   return (
     <Styles>
-      <div className='nav-links'>
-        {holder.map(link => (
+      <div className="nav-links">
+        {navButtons.map(link => (
           <Link to={`/dashboard/${link}`} key={link}>
             <h3>{link}</h3>
           </Link>

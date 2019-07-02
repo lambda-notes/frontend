@@ -3,14 +3,17 @@ import {
   GET_USER_FAIL,
   LOGOUT,
   GET_LESSONS,
-  GET_LESSONS_FAIL
+  GET_LESSONS_FAIL,
+  LESSON_CLICKED
 } from '../constants';
 
 const initialState = {
   user: {},
   isLoading: false,
   isAdmin: false,
-  lessons: []
+  sprints: [],
+  lessons: [],
+  selectedLesson: null
 };
 
 export const globalReducer = (state = initialState, action) => {
@@ -37,7 +40,8 @@ export const globalReducer = (state = initialState, action) => {
     case GET_LESSONS:
       return {
         ...state,
-        lessons: action.payload
+        sprints: action.payload.sprints,
+        lessons: action.payload.lessons
       };
 
     case GET_LESSONS_FAIL:
@@ -45,6 +49,13 @@ export const globalReducer = (state = initialState, action) => {
         ...state,
         error: 'Failed to fetch user.'
       };
+
+    case LESSON_CLICKED:
+      return {
+        ...state,
+        selectedLesson: action.payload
+      };
+
     default:
       return state;
   }
