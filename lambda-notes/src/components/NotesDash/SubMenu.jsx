@@ -7,7 +7,7 @@ import { Value } from 'slate';
 import { url } from '../Auth/config';
 import { useStateValue } from 'react-conflux';
 import { notesContext } from '../../store/contexts';
-import { SET_CURRENT_NOTE } from '../../store/constants';
+import { SET_CURRENT_NOTE, NEW_NOTE } from '../../store/constants';
 
 const SubMenu = ({ notes }) => {
   const [state, dispatch] = useStateValue(notesContext);
@@ -24,9 +24,16 @@ const SubMenu = ({ notes }) => {
       payload: note
     });
   };
-
+  const newNote = e => {
+    e.preventDefault();
+    localStorage.clear();
+    dispatch({ type: NEW_NOTE, payload: true });
+  };
   return (
     <Styles>
+      <button className="btn success" onClick={newNote}>
+        New Note
+      </button>
       <div className="header">
         <h4 className="title">Title</h4>
         <h4>Updated</h4>
