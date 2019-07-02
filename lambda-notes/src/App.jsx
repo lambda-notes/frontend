@@ -39,11 +39,11 @@ function App() {
     <>
       <GlobalStyles />
       <Styles>
-        <Route exact path='/' component={Landing} />
-        <Route path='/login' component={Auth} />
-        <div className='main-view'>
-          <Route path='/dashboard' component={SideNav} />
-          <Route path='/dashboard' component={MainDashboard} />
+        <Route exact path="/" component={Landing} />
+        <Route path="/login" component={Auth} />
+        <div className="main-view">
+          <Route path="/dashboard" component={SideNav} />
+          <Route path="/dashboard" component={MainDashboard} />
         </div>
       </Styles>
     </>
