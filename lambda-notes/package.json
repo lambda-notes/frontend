@@ -3,10 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@convertkit/slate-code": "^0.1.0",
+    "immutable": "^4.0.0-rc.12",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
+    "slate": "^0.47.4",
+    "slate-drop-or-paste-images": "^0.9.1",
+    "slate-paste-linkify": "^0.7.0",
+    "slate-react": "^0.22.4",
     "styled-components": "^4.3.2"
   },
   "scripts": {
