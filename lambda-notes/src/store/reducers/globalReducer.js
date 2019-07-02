@@ -1,9 +1,16 @@
-import { GET_USER, GET_USER_FAIL, LOGOUT } from '../constants';
+import {
+  GET_USER,
+  GET_USER_FAIL,
+  LOGOUT,
+  GET_LESSONS,
+  GET_LESSONS_FAIL
+} from '../constants';
 
 const initialState = {
   user: {},
   isLoading: false,
-  isAdmin: false
+  isAdmin: false,
+  lessons: []
 };
 
 export const globalReducer = (state = initialState, action) => {
@@ -27,6 +34,17 @@ export const globalReducer = (state = initialState, action) => {
       // destroy token?
       return state;
 
+    case GET_LESSONS:
+      return {
+        ...state,
+        lessons: action.payload
+      };
+
+    case GET_LESSONS_FAIL:
+      return {
+        ...state,
+        error: 'Failed to fetch user.'
+      };
     default:
       return state;
   }
