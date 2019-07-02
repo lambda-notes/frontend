@@ -76,15 +76,24 @@ const Styles = styled.div`
   .note {
     display: flex;
     justify-content: space-between;
-    font-size: 1.2rem;
-    padding: 3px 10px;
+    text-decoration: none;
+    font-size: 1.5rem;
+    padding: 10px 10px;
 
     &:nth-child(even) {
       background: #f8f8f8;
+      &:hover {
+        background-color: #880c23;
+        color: #fff;
+      }
     }
 
     &:nth-child(odd) {
       background: #f4f4f4;
+      &:hover {
+        background-color: #880c23;
+        color: #fff;
+      }
     }
   }
 `;

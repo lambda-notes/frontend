@@ -160,8 +160,8 @@ export default Note;
 const Styles = styled.div`
   .editor {
     line-height: 1.4;
-    height: 100%;
-    min-height: 800px;
+    height: 85%;
+    min-height: 600px;
     font-size: 1.3rem;
     padding: 10px;
     margin-top: 10px;
