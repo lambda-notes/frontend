@@ -39,7 +39,7 @@ const Landing = () => {
           // photo: user.photoURL,
           firstName: user.displayName,
           lastName: 'lastName',
-          gihubId: 'mlanders',
+          gihubId: user.providerData[0].uid,
           token: token,
           cohortID: 1
         };
