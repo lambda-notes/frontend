@@ -66,7 +66,7 @@ const Options = ({ mobile, history }) => {
       <h2>Full Stack Web Development Core</h2>
       {lessonList.map(sprint => {
         return (
-          <>
+          <div key={sprint.id}>
             <h3
               key={sprint.id}
               onClick={e => setSprintId(e, sprint.id)}
@@ -91,7 +91,7 @@ const Options = ({ mobile, history }) => {
                 </div>
               );
             })}
-          </>
+          </div>
         );
       })}
     </Styles>
