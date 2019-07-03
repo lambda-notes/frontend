@@ -46,7 +46,7 @@ function App() {
     <>
       <GlobalStyles />
       <Styles>
-        <Route exact path="/landing" component={Landing} />
+        <Route exact path="/" component={Landing} />
         <Route path="/login" component={Auth} />
         {/* <div className="main-view">
           {window_width <= 800 ? (
