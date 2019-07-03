@@ -39,7 +39,7 @@ const Styles = styled.div`
     width: 100%;
     max-width: 600px;
     height: 500px;
-    margin: 15vh auto 0;
+    margin: 14vh auto 0;
     background: white;
     border-radius: 5px;
     -webkit-box-shadow: 0px 0px 5px -1px rgba(0, 0, 0, 0.14);

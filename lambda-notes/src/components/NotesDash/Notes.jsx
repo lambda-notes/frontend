@@ -12,8 +12,7 @@ import {
   NEW_NOTE,
   DELETE_NOTE,
   ADD_NOTE,
-  OPEN_MODAL,
-  CLOSE_MODAL
+  OPEN_MODAL
 } from '../../store/constants';
 
 const Notes = props => {
