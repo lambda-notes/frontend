@@ -24,3 +24,7 @@ export const GET_LESSONS = 'GET_LESSONS';
 export const GET_LESSONS_FAIL = 'GET_LESSONS_FAIL';
 export const LESSON_CLICKED = 'LESSON_CLICKED';
 export const SPRINT_CLICKED = 'SPRINT_CLICKED';
+
+// misc
+export const OPEN_MODAL = 'OPEN_MODAL';
+export const CLOSE_MODAL = 'CLOSE_MODAL';

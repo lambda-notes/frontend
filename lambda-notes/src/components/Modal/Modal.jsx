@@ -1,14 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useStateValue } from 'react-conflux';
+import { CLOSE_MODAL } from '../../store/constants';
+import { globalContext } from '../../store/contexts';
 
-const Modal = ({ text, route }) => {
+const Modal = () => {
+  const [state, dispatch] = useStateValue(globalContext);
+  const { modalMessage } = state;
   const handleRoute = e => {
     e.preventDefault();
+    dispatch({ type: CLOSE_MODAL });
   };
   return (
     <Styles>
       <div className="modal__box">
-        <h1>{text ? text : 'Something went wrong'}</h1>
+        <h1>{modalMessage ? modalMessage : 'Something went wrong'}</h1>
         <button onClick={handleRoute} className="btn success">
           Okay
         </button>
