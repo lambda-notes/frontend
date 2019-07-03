@@ -172,10 +172,12 @@ const Styles = styled.div`
 
   .editor {
     line-height: 1.4;
-    min-height: calc(100vh - 230px);
+    height: calc(100vh - 230px);
+    overflow-y: scroll;
     font-size: 1.6rem;
     margin-top: 20px;
   }
+
   input {
     font-size: 2.5rem;
     border: 0;
