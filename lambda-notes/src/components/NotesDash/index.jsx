@@ -6,6 +6,7 @@ import { Value } from 'slate';
 // data management
 import { useStateValue } from 'react-conflux';
 import { notesContext } from '../../store/contexts';
+import { globalContext } from '../../store/contexts';
 import { url } from '../Auth/config';
 
 // component imports
@@ -14,7 +15,9 @@ import Notes from './Notes';
 
 const NotesDash = props => {
   const [state, dispatch] = useStateValue(notesContext);
+  const [globalState, globalDispatch] = useStateValue(globalContext);
   const { notes } = state;
+  const { selectedLesson } = globalState;
 
   useEffect(() => {
     axios
@@ -27,11 +30,15 @@ const NotesDash = props => {
         dispatch({ type: 'GET_NOTES', payload: res.data.notes });
       })
       .catch(err => dispatch({ type: 'GET_NOTES_FAIL', payload: err }));
-  }, [dispatch]);
+  }, []);
+
+  const filterNotes = () => {
+    return notes.filter(note => note.notesLessonID === selectedLesson);
+  };
 
   return (
     <Styles>
-      <SubMenu notes={notes} />
+      <SubMenu notes={filterNotes()} />
       <Notes props={props} notes={notes} />
     </Styles>
   );

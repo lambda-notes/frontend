@@ -22,7 +22,6 @@
 
 // const Landing = () => {
 //   const [state, dispatch] = useStateValue(globalContext);
-
 // const handleLogin = () => {
 //   firebase
 //     .auth()
@@ -59,6 +58,7 @@
 //           console.log(other);
 //         })
 //         .catch(err => console.log(err.message));
+
 
 //       // axios.get('https://api.github.com/user', config);
 //       dispatch({ type: SET_USER, payload: userProfile });

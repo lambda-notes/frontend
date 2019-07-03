@@ -59,7 +59,6 @@ export const notesReducer = (state = initialState, action) => {
       action.payload.note = Value.fromJSON(parsed);
 
       let index = state.notes.findIndex(note => note.id === action.payload.id);
-      console.log(index);
       state.notes[index] = action.payload;
       return {
         ...state,

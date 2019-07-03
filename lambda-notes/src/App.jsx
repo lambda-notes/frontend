@@ -21,8 +21,7 @@ function App() {
   const [state, dispatch] = useStateValue(globalContext);
 
   const { user, isAdmin } = state;
-
-  console.log(user);
+  console.log('test');
 
   // switch this to a post request with data
   // useEffect(() => {
