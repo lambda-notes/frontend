@@ -29,7 +29,7 @@ const Styles = styled.div`
   background: #131220;
   z-index: 1;
 
-  @media (max-width: 600px) {
+  @media (max-width: 500px) {
     height: 170vh;
     margin: -60px 0 0 0;
   }
