@@ -46,16 +46,16 @@ function App() {
     <>
       <GlobalStyles />
       <Styles>
-        <Route exact path="/" component={Landing} />
+        <Route exact path="/landing" component={Landing} />
         <Route path="/login" component={Auth} />
-        <div className="main-view">
+        {/* <div className="main-view">
           {window_width <= 800 ? (
             <Route path="/dashboard" component={MobileNav} />
           ) : (
             <Route path="/dashboard" component={SideNav} />
           )}
           <Route path="/dashboard" component={MainDashboard} />
-        </div>
+        </div> */}
       </Styles>
     </>
   );
