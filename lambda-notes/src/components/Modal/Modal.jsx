@@ -38,7 +38,7 @@ const Styles = styled.div`
     flex-direction: column;
     width: 100%;
     max-width: 600px;
-    height: 500px;
+    height: 300px;
     margin: 14vh auto 0;
     background: white;
     border-radius: 5px;
