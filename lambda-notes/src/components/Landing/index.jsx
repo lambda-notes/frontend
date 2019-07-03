@@ -103,8 +103,7 @@ const Landing = () => {
           <img
             className="logo"
             src={require('./images/Lambda_Notes_Logo.png')}
-            height="200px"
-            alt="lambda"
+            alt="Lambda Notes"
           />
           <div className="LoginButton">
             <a href="https://lambda-school-notes.herokuapp.com/auth/github">
@@ -117,17 +116,15 @@ const Landing = () => {
           <div className="heroWrapper">
             <img
               className="mainImage"
-              src={require('./images/landingImage.jpeg')}
-              height="45%"
-              width="35%"
-              alt="landingImg"
+              src={require('./images/lambda_notes_dashboard.jpg')}
+              alt="Lambda Notes Screenshot"
             />
-            <p>
+            {/* <p>
               Keep your class notes organize as you move through Lambda School.
-            </p>
+            </p> */}
           </div>
           <div className="mainContentRight">
-            <p className="title">Next Level Notes</p>
+            <p className="title">🔥 Notes 🔥</p>
 
             <div className="mainLoginButton">
               <a href="https://lambda-school-notes.herokuapp.com/auth/github">
@@ -153,69 +150,79 @@ const Styles = styled.div`
     font-size: 1.8rem;
   }
   .title {
-    font-size: 2.5rem;
+    font-size: 4rem;
   }
   .heroWrapper {
-    max-width: 500px;
+    max-width: 600px;
     width: 100%;
     margin-left: 20px;
   }
   .mainContent {
     display: flex;
     flex-direction: row;
-    margin-top: 50px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10%;
+    @media (max-width: 800px) {
+      flex-direction: column;
+    }
   }
   .wrapper {
     position: absolute;
     top: 0;
     left: 0;
     width: 100vw;
+    height: 100vh;
   }
   .background {
     z-index: -1;
     height: 100vh;
     width: 100vw;
     background-color: #0c3c78;
-    -webkit-clip-path: polygon(100% 0, 30% 100%, 100% 100%);
-    clip-path: polygon(100% 0, 30% 100%, 100% 100%);
+    -webkit-clip-path: polygon(100% 60%, 30% 100%, 100% 100%);
+    clip-path: polygon(100% 60%, 30% 100%, 100% 100%);
   }
-  .mainContent .mainContentRight {
+  .mainContentRight {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     font-size: 70px;
     font-weight: 15px;
     margin-left: 7%;
     font-family: 'Lato', sans-serif;
-    margin-top: 5%;
+    @media (max-width: 800px) {
+      margin-top: 50px;
+      margin-left: 0;
+    }
   }
 
   .mainLoginButton {
-    max-width: 400px;
-    width: 100%;
-    height: 100px;
-    padding: 25px 20px 10px 20px;
+    /* max-width: 300px;
+    width: 100%; */
+    padding: 15px 20px;
     text-align: center;
-    border-right: 6px solid #f0f4f7;
-    border-bottom: 6px solid #f0f4f7;
-    border-top: 6px solid #f0f4f7;
+    /* border: 6px solid #f0f4f7; */
     border-radius: 4px;
     cursor: pointer;
     background-color: rgb(214, 10, 43);
-    font-size: 3rem;
-    font-weight: bold;
-    margin-top: 10px;
+    font-size: 2.8rem;
+    /* font-weight: bold; */
+    margin-top: 15px;
   }
   .mainContent .mainContentRight .mainLoginButton a {
     text-decoration: none;
     color: rgb(255, 255, 255);
   }
   .mainImage {
-    width: auto;
-    height: 300px;
+    max-width: 600px;
+    width: 100%;
+    height: auto;
     margin-bottom: 10px;
     box-shadow: 1px 3px 5px gray;
   }
   .logo {
     width: auto;
-    height: 75px;
+    height: 50px;
   }
 
   height: 100vh;
@@ -237,7 +244,7 @@ const Styles = styled.div`
   .LoginButton {
     padding: 5px 10px;
     text-align: center;
-    border: 6px solid #f0f4f7;
+    /* border: 6px solid #f0f4f7; */
     border-radius: 4px;
     cursor: pointer;
     background-color: rgb(214, 10, 43);
