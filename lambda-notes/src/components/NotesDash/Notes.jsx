@@ -102,29 +102,31 @@ const Notes = props => {
 
   return (
     <Styles>
-      {state.newNote || state.currentNote.id ? (
+      {selectedLesson || state.newNote || state.currentNote.id ? (
         <div className="noteOptions">
           <div>
-            {selectedLesson && (
+            {selectedLesson && !state.newNote && !state.currentNote.id && (
               <button className="btn success" onClick={newNote}>
                 New Note
               </button>
             )}
           </div>
-          <div>
-            {state.currentNote.id ? (
-              <button className="btn primary" onClick={updateNote}>
-                Update Note
+          {(state.newNote || state.currentNote.id) && (
+            <div>
+              {state.currentNote.id ? (
+                <button className="btn primary" onClick={updateNote}>
+                  Update Note
+                </button>
+              ) : (
+                <button className="btn primary" onClick={saveNote}>
+                  Save Note
+                </button>
+              )}
+              <button className="btn danger" onClick={deleteNote}>
+                Delete Note
               </button>
-            ) : (
-              <button className="btn primary" onClick={saveNote}>
-                Save Note
-              </button>
-            )}
-            <button className="btn danger" onClick={deleteNote}>
-              Delete Note
-            </button>
-          </div>
+            </div>
+          )}
         </div>
       ) : null}
       {state.currentNote.id || state.newNote ? <Note props={props} /> : null}
