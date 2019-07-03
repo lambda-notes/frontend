@@ -1,10 +1,16 @@
 import React from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { url } from '../Auth/config';
 
 const navButtons = ['home', 'notes', 'search'];
 
 const TopNav = () => {
+  const logout = () => {
+    axios.get(`${url}/logout`);
+  };
+
   return (
     <Styles>
       <div className="nav-links">
@@ -14,7 +20,7 @@ const TopNav = () => {
           </Link>
         ))}
       </div>
-      <h3>Logout</h3>
+      <div onClick={logout}>Logout</div>
     </Styles>
   );
 };
