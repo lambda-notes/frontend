@@ -76,9 +76,10 @@ function App(props) {
 export default App;
 
 const Styles = styled.div`
+  height: 100vh;
   .main-view {
     display: flex;
-    /* height: 100vh; */
+    height: 100vh;
 
     @media (max-width: 800px) {
       flex-direction: column;

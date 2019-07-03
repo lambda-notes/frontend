@@ -32,6 +32,7 @@ const Notes = props => {
   }
 
   const saveNote = e => {
+    console.log(user.id)
     e.preventDefault();
     const note = JSON.stringify(state.currentNote.note);
     let title = state.currentNote.noteTitle;
@@ -138,7 +139,11 @@ const Notes = props => {
           )}
         </div>
       ) : null}
-      {state.currentNote.id || state.newNote ? <Note props={props} /> : null}
+      {state.currentNote.id || state.newNote ? (
+        <Note props={props} />
+      ) : (
+        <p>something</p>
+      )}
     </Styles>
   );
 };
