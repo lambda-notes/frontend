@@ -99,7 +99,10 @@ export const notesReducer = (state = initialState, action) => {
     case SET_NOTE_TITLE:
       return {
         ...state,
-        noteTitle: action.payload
+        currentNote: {
+          ...state.currentNote,
+          noteTitle: action.payload
+        }
       };
     case NEW_NOTE:
       if (action.payload) {

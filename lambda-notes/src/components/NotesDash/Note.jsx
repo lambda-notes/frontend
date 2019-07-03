@@ -8,7 +8,11 @@ import DropOrPasteImages from 'slate-drop-or-paste-images';
 
 import { useStateValue } from 'react-conflux';
 import { notesContext } from '../../store/contexts';
-import { MODIFY_CURRENT_NOTE, SET_CURRENT_NOTE } from '../../store/constants';
+import {
+  MODIFY_CURRENT_NOTE,
+  SET_CURRENT_NOTE,
+  SET_NOTE_TITLE
+} from '../../store/constants';
 
 class Image extends React.Component {
   state = {};
@@ -136,6 +140,10 @@ const Note = props => {
         return next();
     }
   };
+
+  const handleChanges = e => {
+    dispatch({ type: SET_NOTE_TITLE, payload: e.target.value });
+  };
   // console.log(state.currentNote);
   // console.log(Value.fromJSON(initialValue));
   return (
@@ -144,6 +152,7 @@ const Note = props => {
         placeholder="Untitled"
         type="text"
         value={state.currentNote.noteTitle}
+        onChange={handleChanges}
       />
       <Editor
         className="editor"
