@@ -140,11 +140,7 @@ const Notes = props => {
           )}
         </div>
       ) : null}
-      {state.currentNote.id || state.newNote ? (
-        <Note props={props} />
-      ) : (
-        <p>something</p>
-      )}
+      {state.currentNote.id || state.newNote ? <Note props={props} /> : null}
     </Styles>
   );
 };
