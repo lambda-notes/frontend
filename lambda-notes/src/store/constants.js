@@ -16,7 +16,7 @@ export const MODIFY_CURRENT_NOTE = 'MODIFY_CURRENT_NOTE';
 export const UPDATE_NOTE = 'UPDATE_NOTE';
 export const UPDATE_NOTE_FAIL = 'UPDATE_NOTE_FAIL';
 export const NEW_NOTE = 'NEW_NOTE';
-export const CLEAR_CURRENT_NOTE = 'CLEAR_CURRENT_NOTE';
+export const CLEAR_NOTE = 'CLEAR_NOTE';
 export const DELETE_NOTE = 'DELETE_NOTE';
 
 // lessons
