@@ -29,7 +29,7 @@ function App(props) {
       const id = props.history.location.pathname.slice(11);
       localStorage.setItem('id', id);
     }
-  }, [user.id]);
+  }, [props.history.location.pathname, user.id]);
 
   // get id from local storage
   useEffect(() => {
@@ -42,7 +42,7 @@ function App(props) {
         dispatch({ type: 'GET_USER', payload: res.data.user });
       })
       .catch(err => dispatch({ type: 'GET_USER_FAIL', payload: err }));
-  }, []);
+  }, [dispatch]);
 
   const [window_width, setWidth] = useState(window.innerWidth);
   useEffect(() => {
@@ -57,7 +57,7 @@ function App(props) {
     <>
       <GlobalStyles />
       <Styles>
-        <Modal />
+        {/* <Modal /> */}
         <Route exact path="/" render={props => <Landing {...props} />} />
         <Route path="/login" component={Auth} />
         <div className="main-view">
