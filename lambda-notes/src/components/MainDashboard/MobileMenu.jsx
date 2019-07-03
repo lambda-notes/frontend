@@ -28,9 +28,4 @@ const Styles = styled.div`
   top: 0;
   background: #131220;
   z-index: 1;
-
-  @media (max-width: 500px) {
-    height: 170vh;
-    margin: -60px 0 0 0;
-  }
 `;
