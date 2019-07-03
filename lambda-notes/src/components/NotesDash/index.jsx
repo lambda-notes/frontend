@@ -32,7 +32,7 @@ const NotesDash = props => {
         })
         .catch(err => dispatch({ type: 'GET_NOTES_FAIL', payload: err }));
     }
-  }, [user]);
+  }, [user, dispatch]);
 
   const filterNotes = () => {
     return notes.filter(note => note.notesLessonID === selectedLesson);

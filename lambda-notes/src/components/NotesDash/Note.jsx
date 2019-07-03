@@ -1,15 +1,13 @@
 import React from 'react';
-import axios from 'axios';
 import styled from 'styled-components';
 import { Editor } from 'slate-react';
 import Code from '@convertkit/slate-code';
 import PasteLinkify from 'slate-paste-linkify';
 import InsertImages from 'slate-drop-or-paste-images';
 import DropOrPasteImages from 'slate-drop-or-paste-images';
-import { url } from '../Auth/config';
 
 import { useStateValue } from 'react-conflux';
-import { notesContext, globalContext } from '../../store/contexts';
+import { notesContext } from '../../store/contexts';
 import { MODIFY_CURRENT_NOTE, SET_NOTE_TITLE } from '../../store/constants';
 
 class Image extends React.Component {
