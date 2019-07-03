@@ -24,6 +24,10 @@ const Styles = styled.div`
   color: #ffffff;
   overflow-y: auto;
 
+  @media (max-width: 800px) {
+    display: none;
+  }
+
   img {
     /* logo */
     margin: 24px;
