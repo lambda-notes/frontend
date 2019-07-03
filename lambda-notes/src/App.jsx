@@ -59,15 +59,15 @@ function App(props) {
       <Styles>
         {modalOpen && <Modal />}
         <Route exact path="/" render={props => <Landing {...props} />} />
-        <Route path="/login" component={Auth} />
-        <div className="main-view">
-          {window_width <= 800 ? (
-            <Route path="/dashboard" component={MobileNav} />
-          ) : (
-            <Route path="/dashboard" component={SideNav} />
-          )}
-          <Route path="/dashboard" component={MainDashboard} />
-        </div>
+        {/* <Route path="/login" component={Auth} /> */}
+        {/* <div className="main-view"> */}
+        {window_width <= 800 ? (
+          <Route path="/dashboard" component={MobileNav} />
+        ) : (
+          <Route path="/dashboard" component={SideNav} />
+        )}
+        <Route path="/dashboard" component={MainDashboard} />
+        {/* </div> */}
       </Styles>
     </>
   );

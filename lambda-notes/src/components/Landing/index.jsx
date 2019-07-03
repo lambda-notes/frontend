@@ -124,7 +124,7 @@ const Landing = () => {
             </p> */}
           </div>
           <div className="mainContentRight">
-            <p className="title">🔥 Notes 🔥</p>
+            <p className="title">Next Level Notes</p>
 
             <div className="mainLoginButton">
               <a href="https://lambda-school-notes.herokuapp.com/auth/github">
