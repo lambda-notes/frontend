@@ -7,11 +7,11 @@ import logo from '../../assets/Lambda_Notes_Logo.png';
 // component imports
 import Options from './Options';
 
-const SideNav = () => {
+const SideNav = ({ history }) => {
   return (
     <Styles>
       <img src={logo} alt="Lambda Notes Logo" />
-      <Options />
+      <Options history={history} />
     </Styles>
   );
 };

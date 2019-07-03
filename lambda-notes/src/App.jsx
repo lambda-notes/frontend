@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Route } from 'react-router-dom';
 import styled from 'styled-components';
-import axios from 'axios';
 
 // data management
-import { useStateValue } from 'react-conflux';
-import { globalContext } from './store/contexts';
-import { url } from './components/Auth/config';
+// import { useStateValue } from 'react-conflux';
+// import { globalContext } from './store/contexts';
+// import { url } from './components/Auth/config';
 
 // style imports
 import { GlobalStyles } from './styles';
@@ -19,9 +18,9 @@ import SideNav from './components/SideNav';
 import MobileNav from './components/MainDashboard/MobileNav';
 
 function App() {
-  const [state, dispatch] = useStateValue(globalContext);
+  // const [state] = useStateValue(globalContext);
 
-  const { user, isAdmin } = state;
+  // const { user, isAdmin } = state;
   // switch this to a post request with data
   // useEffect(() => {
   //   axios
@@ -46,7 +45,7 @@ function App() {
     <>
       <GlobalStyles />
       <Styles>
-        <Route exact path="/" component={Landing} />
+        <Route exact path="/" render={props => <Landing {...props} />} />
         <Route path="/login" component={Auth} />
         <div className="main-view">
           {window_width <= 800 ? (

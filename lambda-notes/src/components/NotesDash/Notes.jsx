@@ -7,12 +7,7 @@ import { url } from '../Auth/config';
 
 import { useStateValue } from 'react-conflux';
 import { notesContext, globalContext } from '../../store/contexts';
-import {
-  SET_CURRENT_NOTE,
-  SET_NOTE_TITLE,
-  NEW_NOTE,
-  DELETE_NOTE
-} from '../../store/constants';
+import { SET_CURRENT_NOTE, NEW_NOTE, DELETE_NOTE } from '../../store/constants';
 
 const Notes = props => {
   const existingValue = JSON.parse(localStorage.getItem('content'));
@@ -24,7 +19,7 @@ const Notes = props => {
   useEffect(() => {
     if (props.props.location.pathname.slice(11)) {
       let index = state.notes.find(
-        note => note.id == props.props.location.pathname.slice(11)
+        note => note.id === props.props.location.pathname.slice(11)
       );
       if (index) {
         dispatch({
@@ -53,7 +48,7 @@ const Notes = props => {
     }
     axios
       .post(`${url}/notes/`, {
-        notesLessonID: 1,
+        notesLessonID: selectedLesson,
         userID: 2,
         note: note,
         noteTitle: title
@@ -107,29 +102,31 @@ const Notes = props => {
 
   return (
     <Styles>
-      {state.newNote || state.currentNote.id ? (
+      {selectedLesson || state.newNote || state.currentNote.id ? (
         <div className="noteOptions">
           <div>
-            {selectedLesson && (
+            {selectedLesson && !state.newNote && !state.currentNote.id && (
               <button className="btn success" onClick={newNote}>
                 New Note
               </button>
             )}
           </div>
-          <div>
-            {state.currentNote.id ? (
-              <button className="btn primary" onClick={updateNote}>
-                Update Note
+          {(state.newNote || state.currentNote.id) && (
+            <div>
+              {state.currentNote.id ? (
+                <button className="btn primary" onClick={updateNote}>
+                  Update Note
+                </button>
+              ) : (
+                <button className="btn primary" onClick={saveNote}>
+                  Save Note
+                </button>
+              )}
+              <button className="btn danger" onClick={deleteNote}>
+                Delete Note
               </button>
-            ) : (
-              <button className="btn primary" onClick={saveNote}>
-                Save Note
-              </button>
-            )}
-            <button className="btn danger" onClick={deleteNote}>
-              Delete Note
-            </button>
-          </div>
+            </div>
+          )}
         </div>
       ) : null}
       {state.currentNote.id || state.newNote ? <Note props={props} /> : null}

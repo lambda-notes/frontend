@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Editor } from 'slate-react';
 import Code from '@convertkit/slate-code';
@@ -8,7 +8,7 @@ import DropOrPasteImages from 'slate-drop-or-paste-images';
 
 import { useStateValue } from 'react-conflux';
 import { notesContext } from '../../store/contexts';
-import { MODIFY_CURRENT_NOTE, SET_CURRENT_NOTE } from '../../store/constants';
+import { MODIFY_CURRENT_NOTE, SET_NOTE_TITLE } from '../../store/constants';
 
 class Image extends React.Component {
   state = {};
@@ -136,6 +136,10 @@ const Note = props => {
         return next();
     }
   };
+
+  const handleChanges = e => {
+    dispatch({ type: SET_NOTE_TITLE, payload: e.target.value });
+  };
   // console.log(state.currentNote);
   // console.log(Value.fromJSON(initialValue));
   return (
@@ -144,6 +148,7 @@ const Note = props => {
         placeholder="Untitled"
         type="text"
         value={state.currentNote.noteTitle}
+        onChange={handleChanges}
       />
       <Editor
         className="editor"
@@ -166,14 +171,18 @@ const Styles = styled.div`
   margin-top: 15px;
   padding: 20px;
   border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 5px -1px rgba(0, 0, 0, 0.14);
+  -moz-box-shadow: 0px 0px 5px -1px rgba(0, 0, 0, 0.14);
+  box-shadow: 0px 0px 5px -1px rgba(0, 0, 0, 0.14);
 
   .editor {
     line-height: 1.4;
-    height: 85%;
-    min-height: calc(100vh - 223px);
+    height: calc(100vh - 230px);
+    overflow-y: scroll;
     font-size: 1.6rem;
     margin-top: 20px;
   }
+
   input {
     font-size: 2.5rem;
     border: 0;

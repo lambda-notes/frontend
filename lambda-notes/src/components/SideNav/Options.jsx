@@ -14,7 +14,7 @@ import {
   TOGGLE_MENU
 } from '../../store/constants';
 
-const Options = ({ mobile }) => {
+const Options = ({ mobile, history }) => {
   const [state, dispatch] = useStateValue(globalContext);
   const { sprints, lessons, selectedSprint, selectedLesson, menuOpen } = state;
 
@@ -52,10 +52,12 @@ const Options = ({ mobile }) => {
 
   const setSprintId = (e, id) => {
     e.preventDefault();
-    if (selectedSprint === id) {
+    if (!selectedSprint === id) {
       dispatch({ type: SPRINT_CLICKED, payload: null });
+      history.push('/dashboard');
     } else {
       dispatch({ type: SPRINT_CLICKED, payload: id });
+      history.push('/dashboard');
     }
   };
 
@@ -64,28 +66,32 @@ const Options = ({ mobile }) => {
       <h2>Full Stack Web Development Core</h2>
       {lessonList.map(sprint => {
         return (
-          <>
+          <div key={sprint.id}>
             <h3
               key={sprint.id}
               onClick={e => setSprintId(e, sprint.id)}
-              className={selectedSprint === sprint.id && 'selected'}
+              className={selectedSprint === sprint.id ? 'selected' : undefined}
             >
               {sprint.id}. {sprint.sprintTitle}
             </h3>
             {sprint.lessonsArr.map(lesson => {
               return (
-                <div className={selectedSprint === sprint.id ? 'show' : 'hide'}>
+                <div
+                  key={lesson.lessonList}
+                  className={selectedSprint === sprint.id ? 'show' : 'hide'}
+                >
                   <h4
-                    key={lesson.id}
                     onClick={e => setLessonId(e, lesson.id)}
-                    className={selectedLesson === lesson.id && 'selected'}
+                    className={
+                      selectedLesson === lesson.id ? 'selected' : undefined
+                    }
                   >
                     {lesson.lessonList}
                   </h4>
                 </div>
               );
             })}
-          </>
+          </div>
         );
       })}
     </Styles>
