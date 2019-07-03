@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Editor } from 'slate-react';
 import Code from '@convertkit/slate-code';
@@ -8,11 +8,7 @@ import DropOrPasteImages from 'slate-drop-or-paste-images';
 
 import { useStateValue } from 'react-conflux';
 import { notesContext } from '../../store/contexts';
-import {
-  MODIFY_CURRENT_NOTE,
-  SET_CURRENT_NOTE,
-  SET_NOTE_TITLE
-} from '../../store/constants';
+import { MODIFY_CURRENT_NOTE, SET_NOTE_TITLE } from '../../store/constants';
 
 class Image extends React.Component {
   state = {};

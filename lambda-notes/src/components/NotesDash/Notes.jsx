@@ -7,12 +7,7 @@ import { url } from '../Auth/config';
 
 import { useStateValue } from 'react-conflux';
 import { notesContext, globalContext } from '../../store/contexts';
-import {
-  SET_CURRENT_NOTE,
-  SET_NOTE_TITLE,
-  NEW_NOTE,
-  DELETE_NOTE
-} from '../../store/constants';
+import { SET_CURRENT_NOTE, NEW_NOTE, DELETE_NOTE } from '../../store/constants';
 
 const Notes = props => {
   const existingValue = JSON.parse(localStorage.getItem('content'));
@@ -24,7 +19,7 @@ const Notes = props => {
   useEffect(() => {
     if (props.props.location.pathname.slice(11)) {
       let index = state.notes.find(
-        note => note.id == props.props.location.pathname.slice(11)
+        note => note.id === props.props.location.pathname.slice(11)
       );
       if (index) {
         dispatch({

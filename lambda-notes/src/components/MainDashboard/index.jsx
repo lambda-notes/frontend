@@ -6,7 +6,6 @@ import { Route } from 'react-router-dom';
 import AdminDash from '../AdminDash';
 import NotesDash from '../NotesDash';
 import TopNav from './TopNav';
-import Note from '../NotesDash/Note';
 
 const MainDash = () => {
   const isAdmin = false;

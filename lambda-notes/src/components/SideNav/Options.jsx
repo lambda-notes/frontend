@@ -70,17 +70,21 @@ const Options = ({ mobile, history }) => {
             <h3
               key={sprint.id}
               onClick={e => setSprintId(e, sprint.id)}
-              className={selectedSprint === sprint.id && 'selected'}
+              className={selectedSprint === sprint.id ? 'selected' : undefined}
             >
               {sprint.id}. {sprint.sprintTitle}
             </h3>
             {sprint.lessonsArr.map(lesson => {
               return (
-                <div className={selectedSprint === sprint.id ? 'show' : 'hide'}>
+                <div
+                  key={lesson.lessonList}
+                  className={selectedSprint === sprint.id ? 'show' : 'hide'}
+                >
                   <h4
-                    key={lesson.id}
                     onClick={e => setLessonId(e, lesson.id)}
-                    className={selectedLesson === lesson.id && 'selected'}
+                    className={
+                      selectedLesson === lesson.id ? 'selected' : undefined
+                    }
                   >
                     {lesson.lessonList}
                   </h4>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import logo from '../../assets/Lambda_Notes_Logo.png';
 import MobileMenuButton from './MobileMenuButton';

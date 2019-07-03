@@ -1,10 +1,7 @@
 import React from 'react';
-import axios from 'axios';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { Value } from 'slate';
 
-import { url } from '../Auth/config';
 import { useStateValue } from 'react-conflux';
 import { notesContext } from '../../store/contexts';
 import { SET_CURRENT_NOTE } from '../../store/constants';
