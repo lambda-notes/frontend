@@ -20,7 +20,9 @@ const TopNav = () => {
           </Link>
         ))}
       </div>
-      <div onClick={logout}>Logout</div>
+      <h3 style={{ cursor: 'pointer' }} onClick={logout}>
+        Logout
+      </h3>
     </Styles>
   );
 };
