@@ -6,7 +6,7 @@ import axios from 'axios';
 import { url } from '../Auth/config';
 
 import { useStateValue } from 'react-conflux';
-import { notesContext } from '../../store/contexts';
+import { notesContext, globalContext } from '../../store/contexts';
 import {
   SET_CURRENT_NOTE,
   SET_NOTE_TITLE,
@@ -18,6 +18,8 @@ const Notes = props => {
   const existingValue = JSON.parse(localStorage.getItem('content'));
   const [bool, setBool] = useState(true);
   const [state, dispatch] = useStateValue(notesContext);
+  const [globalState] = useStateValue(globalContext);
+  const { selectedLesson } = globalState;
 
   useEffect(() => {
     if (props.props.location.pathname.slice(11)) {
@@ -97,9 +99,10 @@ const Notes = props => {
       .catch(err => dispatch({ type: 'UPDATE_NOTE_FAIL', payload: err }));
   };
 
-  const handleChange = e => {
+  const newNote = e => {
     e.preventDefault();
-    dispatch({ type: SET_NOTE_TITLE, payload: e.target.value });
+    localStorage.clear();
+    dispatch({ type: NEW_NOTE, payload: true });
   };
 
   return (
@@ -107,12 +110,11 @@ const Notes = props => {
       {state.newNote || state.currentNote.id ? (
         <div className="noteOptions">
           <div>
-            <input
-              className="input"
-              onChange={handleChange}
-              value={state.noteTitle}
-              placeholder="Title"
-            />
+            {selectedLesson && (
+              <button className="btn success" onClick={newNote}>
+                New Note
+              </button>
+            )}
           </div>
           <div>
             {state.currentNote.id ? (
@@ -141,9 +143,14 @@ const Styles = styled.div`
   background: white;
   width: 100%;
   padding: 10px;
+
   .noteOptions {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+  }
+
+  .danger {
+    margin-left: 10px;
   }
 `;

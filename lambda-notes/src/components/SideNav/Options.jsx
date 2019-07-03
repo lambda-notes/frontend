@@ -28,7 +28,7 @@ const Options = () => {
         });
       })
       .catch(err => dispatch({ type: GET_LESSONS_FAIL, payload: err }));
-  }, []);
+  }, [dispatch]);
 
   // combine sprints and lessons into main menu
   const lessonList = [];
@@ -111,14 +111,18 @@ const Styles = styled.div`
     }
   }
 
-  h4 {
-    font-size: 14px;
-    padding: 0.4rem 0 0.4rem 3.7rem;
-    font-weight: 700;
-    cursor: pointer;
+  div {
+    transition: 5s;
 
-    &:hover {
-      background: #2f2c4b;
+    h4 {
+      font-size: 14px;
+      padding: 0.4rem 0 0.4rem 3.7rem;
+      font-weight: 700;
+      cursor: pointer;
+
+      &:hover {
+        background: #2f2c4b;
+      }
     }
   }
 

@@ -2,8 +2,9 @@ import { css } from 'styled-components';
 
 export const Buttons = css`
   .btn {
+    min-width: 110px;
     display: inline-block;
-    margin: 0 5px;
+    margin: 0;
     font-weight: 400;
     text-align: center;
     white-space: nowrap;
