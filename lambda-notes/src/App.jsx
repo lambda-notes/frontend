@@ -16,6 +16,7 @@ import MainDashboard from './components/MainDashboard';
 import Landing from './components/Landing';
 import SideNav from './components/SideNav';
 import MobileNav from './components/MainDashboard/MobileNav';
+import Modal from './components/Modal/Modal';
 
 function App() {
   // const [state] = useStateValue(globalContext);
@@ -45,6 +46,7 @@ function App() {
     <>
       <GlobalStyles />
       <Styles>
+        <Modal />
         <Route exact path="/" render={props => <Landing {...props} />} />
         <Route path="/login" component={Auth} />
         <div className="main-view">
