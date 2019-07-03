@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import styled from 'styled-components';
 import { Editor } from 'slate-react';
 import Code from '@convertkit/slate-code';
@@ -191,7 +191,11 @@ const Note = props => {
    * @param {Editor} editor
    */
 
-  let editor = useRef(null);
+  // let editor = useRef();
+  const editor =editor=>{
+    return useRef(state.currentNote.note);
+
+  } 
 
   return (
     <Styles>
