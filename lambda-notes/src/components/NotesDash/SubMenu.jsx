@@ -9,7 +9,8 @@ import { SET_CURRENT_NOTE } from '../../store/constants';
 const SubMenu = ({ notes }) => {
   const [state, dispatch] = useStateValue(notesContext);
 
-  const setCurrentNote = id => {
+  const setCurrentNote = (id, e) => {
+    e.preventDefault();
     let note = state.notes.find(note => {
       return note.id === id;
     });
@@ -31,7 +32,7 @@ const SubMenu = ({ notes }) => {
         return (
           <Link
             to={`/dashboard/${note.id}`}
-            onClick={() => setCurrentNote(note.id)}
+            onClick={e => setCurrentNote(note.id, e)}
             className="note"
             key={note.id}
           >

@@ -7,7 +7,12 @@ import { url } from '../Auth/config';
 
 import { useStateValue } from 'react-conflux';
 import { notesContext, globalContext } from '../../store/contexts';
-import { SET_CURRENT_NOTE, NEW_NOTE, DELETE_NOTE } from '../../store/constants';
+import {
+  SET_CURRENT_NOTE,
+  NEW_NOTE,
+  DELETE_NOTE,
+  ADD_NOTE
+} from '../../store/constants';
 
 const Notes = props => {
   const existingValue = JSON.parse(localStorage.getItem('content'));
@@ -42,7 +47,7 @@ const Notes = props => {
   const saveNote = e => {
     e.preventDefault();
     const note = JSON.stringify(state.currentNote.note);
-    let title = state.noteTitle;
+    let title = state.currentNote.noteTitle;
     if (title === '') {
       title = 'New Note';
     }
@@ -57,10 +62,7 @@ const Notes = props => {
         localStorage.clear();
         let parsed = JSON.parse(res.data.note.note);
         res.data.note.note = Value.fromJSON(parsed);
-        state.notes.push(res.data.note);
-        dispatch({ type: NEW_NOTE, payload: false });
-
-        console.log(res.data.message);
+        dispatch({ type: ADD_NOTE, payload: res.data.note });
       })
       .catch(err => console.log(err));
   };
@@ -88,7 +90,7 @@ const Notes = props => {
         console.log(res.data.note);
         dispatch({
           type: 'UPDATE_NOTE',
-          payload: res.data.note /* maybe? */
+          payload: res.data.note
         });
       })
       .catch(err => dispatch({ type: 'UPDATE_NOTE_FAIL', payload: err }));

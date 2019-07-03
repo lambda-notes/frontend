@@ -83,8 +83,7 @@ export const notesReducer = (state = initialState, action) => {
           noteLessonID: '',
           userID: '',
           note: Value.fromJSON(initialValue)
-        },
-        noteTitle: ''
+        }
       };
     case SET_CURRENT_NOTE:
       return {
@@ -108,16 +107,6 @@ export const notesReducer = (state = initialState, action) => {
       if (action.payload) {
         return {
           ...state,
-          currentNote: {
-            dateCreated: '',
-            dateUpdated: '',
-            id: '',
-            noteTitle: '',
-            noteLessonID: '',
-            userID: '',
-            note: Value.fromJSON(initialValue)
-          },
-          noteTitle: '',
           newNote: action.payload
         };
       } else {
