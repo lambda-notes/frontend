@@ -163,7 +163,7 @@ const Styles = styled.div`
     justify-content: center;
     align-items: center;
     margin-top: 10%;
-    @media (max-width: 800px) {
+    @media (max-width: 920px) {
       flex-direction: column;
     }
   }
@@ -190,7 +190,7 @@ const Styles = styled.div`
     font-weight: 15px;
     margin-left: 7%;
     font-family: 'Lato', sans-serif;
-    @media (max-width: 800px) {
+    @media (max-width: 920px) {
       margin-top: 50px;
       margin-left: 0;
     }
