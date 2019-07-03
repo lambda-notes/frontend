@@ -2,13 +2,12 @@ import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { url } from '../Auth/config';
 
 const navButtons = ['home', 'notes', 'search'];
 
 const TopNav = () => {
   const logout = () => {
-    axios.get(`${url}/logout`);
+    axios.get(`https://lambda-school-notes.herokuapp.com/auth/logout`);
   };
 
   return (
