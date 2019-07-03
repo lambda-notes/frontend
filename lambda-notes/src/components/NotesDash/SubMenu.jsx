@@ -6,13 +6,11 @@ import { Value } from 'slate';
 
 import { url } from '../Auth/config';
 import { useStateValue } from 'react-conflux';
-import { notesContext, globalContext } from '../../store/contexts';
-import { SET_CURRENT_NOTE, NEW_NOTE } from '../../store/constants';
+import { notesContext } from '../../store/contexts';
+import { SET_CURRENT_NOTE } from '../../store/constants';
 
 const SubMenu = ({ notes }) => {
   const [state, dispatch] = useStateValue(notesContext);
-  const [globalState] = useStateValue(globalContext);
-  const { selectedLesson } = globalState;
 
   const setCurrentNote = id => {
     let note = state.notes.find(note => {
@@ -26,18 +24,8 @@ const SubMenu = ({ notes }) => {
       payload: note
     });
   };
-  const newNote = e => {
-    e.preventDefault();
-    localStorage.clear();
-    dispatch({ type: NEW_NOTE, payload: true });
-  };
   return (
-    <Styles selectedLesson={selectedLesson}>
-      {selectedLesson && (
-        <button className="btn success" onClick={newNote}>
-          New Note
-        </button>
-      )}
+    <Styles>
       <div className="header">
         <h4 className="title">Title</h4>
         <h4>Updated</h4>
@@ -76,13 +64,7 @@ const Styles = styled.div`
     border-bottom: 1px solid grey;
     font-size: 1.2rem;
     font-weight: 700;
-    margin-top: 10px;
-
-    ${props =>
-      !props.selectedLesson &&
-      css`
-        margin-top: 64px;
-      `}
+    margin-top: 38px;
 
     .title {
       width: 65%;

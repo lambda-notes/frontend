@@ -15,7 +15,7 @@ import Notes from './Notes';
 
 const NotesDash = props => {
   const [state, dispatch] = useStateValue(notesContext);
-  const [globalState, globalDispatch] = useStateValue(globalContext);
+  const [globalState] = useStateValue(globalContext);
   const { notes } = state;
   const { selectedLesson } = globalState;
 
@@ -30,7 +30,7 @@ const NotesDash = props => {
         dispatch({ type: 'GET_NOTES', payload: res.data.notes });
       })
       .catch(err => dispatch({ type: 'GET_NOTES_FAIL', payload: err }));
-  }, []);
+  }, [dispatch]);
 
   const filterNotes = () => {
     return notes.filter(note => note.notesLessonID === selectedLesson);

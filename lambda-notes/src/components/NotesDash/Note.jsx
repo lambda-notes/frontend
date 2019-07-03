@@ -140,7 +140,11 @@ const Note = props => {
   // console.log(Value.fromJSON(initialValue));
   return (
     <Styles>
-      <p className="h1">{state.currentNote.noteTitle}</p>
+      <input
+        placeholder="Untitled"
+        type="text"
+        value={state.currentNote.noteTitle}
+      />
       <Editor
         className="editor"
         value={state.currentNote.note}
@@ -158,16 +162,23 @@ const Note = props => {
 export default Note;
 
 const Styles = styled.div`
+  border: 1px solid #dedede;
+  margin-top: 15px;
+  padding: 20px;
+  border-radius: 5px;
+
   .editor {
     line-height: 1.4;
     height: 85%;
-    min-height: 600px;
-    font-size: 1.3rem;
-    padding: 10px;
-    margin-top: 10px;
-    box-shadow: 1px 1px 4px gray;
+    min-height: calc(100vh - 223px);
+    font-size: 1.6rem;
+    margin-top: 20px;
   }
-  .h1 {
-    font-size: 2rem;
+  input {
+    font-size: 2.5rem;
+    border: 0;
+    font-weight: 700;
+    outline: none;
+    width: 50%;
   }
 `;
