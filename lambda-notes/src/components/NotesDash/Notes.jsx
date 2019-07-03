@@ -22,6 +22,7 @@ const Notes = props => {
   const [globalState, globalDispatch] = useStateValue(globalContext);
   const { selectedLesson, user } = globalState;
 
+  console.log('Global State - User: ', globalState.user);
   if (existingValue && bool) {
     setBool(false);
     const resValue = Value.fromJSON(existingValue);
@@ -32,7 +33,7 @@ const Notes = props => {
   }
 
   const saveNote = e => {
-    console.log(user.id)
+    console.log('Global State - User: ', globalState.user);
     e.preventDefault();
     const note = JSON.stringify(state.currentNote.note);
     let title = state.currentNote.noteTitle;
