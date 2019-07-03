@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-const navButtons = ['home', 'video', 'notes', 'search'];
+const navButtons = ['home', 'notes', 'search'];
 
 const TopNav = () => {
   return (
@@ -42,6 +42,11 @@ const Styles = styled.div`
     font-size: 16px;
     font-weight: 500;
     text-transform: capitalize;
+
+    @media (max-width: 800px) {
+      font-size: 14px;
+      padding: 0.2rem 1.2rem;
+    }
 
     &:hover {
       color: #131220;

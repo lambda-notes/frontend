@@ -25,4 +25,8 @@ export default MainDash;
 
 const Styles = styled.div`
   min-width: calc(100vw - 320px);
+
+  @media (max-width: 800px) {
+    width: 100%;
+  }
 `;

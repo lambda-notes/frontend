@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route } from 'react-router-dom';
 import styled from 'styled-components';
 import axios from 'axios';
@@ -16,13 +16,12 @@ import Auth from './components/Auth';
 import MainDashboard from './components/MainDashboard';
 import Landing from './components/Landing';
 import SideNav from './components/SideNav';
+import MobileNav from './components/MainDashboard/MobileNav';
 
 function App() {
   const [state, dispatch] = useStateValue(globalContext);
 
   const { user, isAdmin } = state;
-  console.log('test');
-
   // switch this to a post request with data
   // useEffect(() => {
   //   axios
@@ -34,6 +33,15 @@ function App() {
   //     .catch(err => dispatch({ type: 'GET_USER_FAIL', payload: err }));
   // }, []);
 
+  const [window_width, setWidth] = useState(window.innerWidth);
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <>
       <GlobalStyles />
@@ -41,7 +49,11 @@ function App() {
         <Route exact path="/" component={Landing} />
         <Route path="/login" component={Auth} />
         <div className="main-view">
-          <Route path="/dashboard" component={SideNav} />
+          {window_width <= 800 ? (
+            <Route path="/dashboard" component={MobileNav} />
+          ) : (
+            <Route path="/dashboard" component={SideNav} />
+          )}
           <Route path="/dashboard" component={MainDashboard} />
         </div>
       </Styles>
@@ -55,5 +67,9 @@ const Styles = styled.div`
   .main-view {
     display: flex;
     height: 100vh;
+
+    @media (max-width: 800px) {
+      flex-direction: column;
+    }
   }
 `;
