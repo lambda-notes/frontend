@@ -9,13 +9,14 @@ import { url } from '../Auth/config';
 import {
   GET_LESSONS,
   GET_LESSONS_FAIL,
-  LESSON_CLICKED
+  LESSON_CLICKED,
+  SPRINT_CLICKED
 } from '../../store/constants';
 
 const Options = () => {
   const [state, dispatch] = useStateValue(globalContext);
 
-  const { sprints, lessons, selectedLesson } = state;
+  const { sprints, lessons, selectedSprint, selectedLesson } = state;
 
   useEffect(() => {
     axios
@@ -33,7 +34,11 @@ const Options = () => {
   const lessonList = [];
   sprints.forEach(sprint => {
     const lessonsArr = lessons.filter(lesson => lesson.sprintID === sprint.id);
-    lessonList.push({ sprintTitle: sprint.sprintTitle, lessonsArr });
+    lessonList.push({
+      sprintTitle: sprint.sprintTitle,
+      id: sprint.id,
+      lessonsArr
+    });
   });
 
   const setLessonId = (e, id) => {
@@ -41,18 +46,41 @@ const Options = () => {
     dispatch({ type: LESSON_CLICKED, payload: id });
   };
 
+  const setSprintId = (e, id) => {
+    e.preventDefault();
+    if (selectedSprint === id) {
+      dispatch({ type: SPRINT_CLICKED, payload: null });
+    } else {
+      dispatch({ type: SPRINT_CLICKED, payload: id });
+    }
+  };
+
+  console.log(selectedSprint);
+
   return (
     <Styles>
       <h2>Full Stack Web Development Core</h2>
       {lessonList.map(sprint => {
         return (
           <>
-            <h3 key={sprint.id}>{sprint.sprintTitle}</h3>
+            <h3
+              key={sprint.id}
+              onClick={e => setSprintId(e, sprint.id)}
+              className={selectedSprint === sprint.id && 'selected'}
+            >
+              {sprint.id}. {sprint.sprintTitle}
+            </h3>
             {sprint.lessonsArr.map(lesson => {
               return (
-                <h4 key={lesson.id} onClick={e => setLessonId(e, lesson.id)}>
-                  {lesson.lessonList}
-                </h4>
+                <div className={selectedSprint === sprint.id ? 'show' : 'hide'}>
+                  <h4
+                    key={lesson.id}
+                    onClick={e => setLessonId(e, lesson.id)}
+                    className={selectedLesson === lesson.id && 'selected'}
+                  >
+                    {lesson.lessonList}
+                  </h4>
+                </div>
               );
             })}
           </>
@@ -65,6 +93,8 @@ const Options = () => {
 export default Options;
 
 const Styles = styled.div`
+  line-height: 1.5;
+
   h2 {
     padding: 0.4rem 2.4rem;
     margin-bottom: 1rem;
@@ -72,14 +102,35 @@ const Styles = styled.div`
 
   h3 {
     font-size: 16px;
-    padding: 0.4rem 2.4rem;
+    padding: 0.4rem 8rem 0.4rem 2.4rem;
     font-weight: 700;
+    cursor: pointer;
+
+    &:hover {
+      background: #2f2c4b;
+    }
   }
 
   h4 {
     font-size: 14px;
-    padding: 0.4rem 0 0.4rem 4.7rem;
+    padding: 0.4rem 0 0.4rem 3.7rem;
     font-weight: 700;
     cursor: pointer;
+
+    &:hover {
+      background: #2f2c4b;
+    }
+  }
+
+  .hide {
+    display: none;
+  }
+
+  .show {
+    display: block;
+  }
+
+  .selected {
+    background: #2f2c4b;
   }
 `;

@@ -5,6 +5,7 @@ import {
   GET_LESSONS,
   GET_LESSONS_FAIL,
   LESSON_CLICKED,
+  SPRINT_CLICKED,
   SET_USER
 } from '../constants';
 
@@ -14,7 +15,8 @@ const initialState = {
   isAdmin: false,
   sprints: [],
   lessons: [],
-  selectedLesson: null
+  selectedLesson: null,
+  selectedSprint: null
 };
 
 export const globalReducer = (state = initialState, action) => {
@@ -60,6 +62,11 @@ export const globalReducer = (state = initialState, action) => {
       return {
         ...state,
         selectedLesson: action.payload
+      };
+    case SPRINT_CLICKED:
+      return {
+        ...state,
+        selectedSprint: action.payload
       };
 
     default:
