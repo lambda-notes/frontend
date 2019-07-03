@@ -1,36 +1,28 @@
 import React from 'react';
 import styled from 'styled-components';
-
-// asset imports
 import logo from '../../assets/Lambda_Notes_Logo.png';
 
-// component imports
-import Options from './Options';
-
-const SideNav = () => {
+const MobileNav = () => {
   return (
     <Styles>
       <img src={logo} alt="Lambda Notes Logo" />
-      <Options />
+      <h3>Hamburger</h3>
     </Styles>
   );
 };
 
-export default SideNav;
+export default MobileNav;
 
 const Styles = styled.div`
-  min-width: 320px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
   background: #131220;
-  color: #ffffff;
-  overflow-y: auto;
-
-  @media (max-width: 800px) {
-    display: none;
-  }
 
   img {
     /* logo */
-    margin: 24px;
-    width: 100px;
+    margin: 20px;
+    width: 80px;
   }
 `;
