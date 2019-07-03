@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Route } from 'react-router-dom';
 import styled from 'styled-components';
+import axios from 'axios';
 
 // data management
-// import { useStateValue } from 'react-conflux';
-// import { globalContext } from './store/contexts';
-// import { url } from './components/Auth/config';
+import { useStateValue } from 'react-conflux';
+import { globalContext } from './store/contexts';
+import { url } from './components/Auth/config';
 
 // style imports
 import { GlobalStyles } from './styles';
@@ -17,20 +18,29 @@ import Landing from './components/Landing';
 import SideNav from './components/SideNav';
 import MobileNav from './components/MainDashboard/MobileNav';
 
-function App() {
-  // const [state] = useStateValue(globalContext);
+function App(props) {
+  const [, dispatch] = useStateValue(globalContext);
 
-  // const { user, isAdmin } = state;
-  // switch this to a post request with data
-  // useEffect(() => {
-  //   axios
-  //     .get(`${url}/users/2`)
-  //     .then(res => {
-  //       localStorage.setItem('token', res.data.token);
-  //       dispatch({ type: 'GET_USER', payload: res.data.user });
-  //     })
-  //     .catch(err => dispatch({ type: 'GET_USER_FAIL', payload: err }));
-  // }, []);
+  // this temporarily gets the user id from the url
+  useEffect(() => {
+    if (!localStorage.getItem('id')) {
+      const id = props.history.location.pathname.slice(11);
+      localStorage.setItem('id', id);
+    }
+  }, []);
+
+  // get id from local storage
+  useEffect(() => {
+    const id = localStorage.getItem('id');
+    // we will need to attach token to this when we have it.
+
+    axios
+      .get(`${url}/users/${id}`)
+      .then(res => {
+        dispatch({ type: 'GET_USER', payload: res.data.user });
+      })
+      .catch(err => dispatch({ type: 'GET_USER_FAIL', payload: err }));
+  }, []);
 
   const [window_width, setWidth] = useState(window.innerWidth);
   useEffect(() => {

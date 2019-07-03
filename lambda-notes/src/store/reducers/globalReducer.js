@@ -22,7 +22,6 @@ const initialState = {
 };
 
 export const globalReducer = (state = initialState, action) => {
-  console.log(action);
   switch (action.type) {
     case GET_USER:
       // set local storage with token?
@@ -30,7 +29,7 @@ export const globalReducer = (state = initialState, action) => {
       return {
         ...state,
         user: action.payload,
-        isAdmin: action.payload.accountType === 'admin' ? true : false,
+        // isAdmin: action.payload.accountType === 1 ? true : false,
         error: ''
       };
 

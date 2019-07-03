@@ -54,7 +54,7 @@ const Notes = props => {
         noteTitle: title
       })
       .then(res => {
-        localStorage.clear();
+        localStorage.removeItem('content');
         let parsed = JSON.parse(res.data.note.note);
         res.data.note.note = Value.fromJSON(parsed);
         state.notes.push(res.data.note);
@@ -96,7 +96,7 @@ const Notes = props => {
 
   const newNote = e => {
     e.preventDefault();
-    localStorage.clear();
+    localStorage.removeItem('content');
     dispatch({ type: NEW_NOTE, payload: true });
   };
 
