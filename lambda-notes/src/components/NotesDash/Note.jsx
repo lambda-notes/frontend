@@ -189,6 +189,6 @@ const Styles = styled.div`
     border: 0;
     font-weight: 700;
     outline: none;
-    width: 50%;
+    width: 100%;
   }
 `;

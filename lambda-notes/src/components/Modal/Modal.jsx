@@ -1,11 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Modal = () => {
+const Modal = ({ text, route }) => {
+  const handleRoute = e => {
+    e.preventDefault();
+  };
   return (
     <Styles>
       <div className="modal__box">
-        <h1>Title</h1>
+        <h1>{text ? text : 'Something went wrong'}</h1>
+        <button onClick={handleRoute} className="btn success">
+          Okay
+        </button>
       </div>
     </Styles>
   );
@@ -20,6 +26,10 @@ const Styles = styled.div`
   z-index: 50;
 
   .modal__box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     width: 100%;
     max-width: 600px;
     height: 500px;
@@ -31,6 +41,12 @@ const Styles = styled.div`
     box-shadow: 0px 0px 5px -1px rgba(0, 0, 0, 0.14);
 
     h1 {
+      display: inline-block;
+      width: 100%;
+      font-size: 3.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 50px;
     }
   }
 `;

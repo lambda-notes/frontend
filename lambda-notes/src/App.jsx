@@ -57,7 +57,7 @@ function App(props) {
     <>
       <GlobalStyles />
       <Styles>
-        {/* <Modal /> */}
+        <Modal />
         <Route exact path="/" render={props => <Landing {...props} />} />
         <Route path="/login" component={Auth} />
         <div className="main-view">
