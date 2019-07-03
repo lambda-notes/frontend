@@ -11,6 +11,7 @@ import {
   UPDATE_NOTE,
   UPDATE_NOTE_FAIL,
   NEW_NOTE,
+  CLEAR_NOTE,
   DELETE_NOTE
 } from '../constants';
 
@@ -47,6 +48,8 @@ export const notesReducer = (state = initialState, action) => {
     case ADD_NOTE:
       return {
         ...state,
+        newNote: false,
+        currentNote: action.payload,
         notes: [...state.notes, action.payload]
       };
     case ADD_NOTE_FAIL:
@@ -112,6 +115,20 @@ export const notesReducer = (state = initialState, action) => {
       } else {
         return { ...state, newNote: action.payload };
       }
+    case CLEAR_NOTE:
+      return {
+        ...state,
+        newNote: false,
+        currentNote: {
+          dateCreated: '',
+          dateUpdated: '',
+          id: '',
+          noteTitle: '',
+          noteLessonID: '',
+          userID: '',
+          note: Value.fromJSON(initialValue)
+        }
+      };
     default:
       return state;
   }

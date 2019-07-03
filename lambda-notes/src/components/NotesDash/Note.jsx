@@ -1,15 +1,13 @@
 import React from 'react';
-import axios from 'axios';
 import styled from 'styled-components';
 import { Editor } from 'slate-react';
 import Code from '@convertkit/slate-code';
 import PasteLinkify from 'slate-paste-linkify';
 import InsertImages from 'slate-drop-or-paste-images';
 import DropOrPasteImages from 'slate-drop-or-paste-images';
-import { url } from '../Auth/config';
 
 import { useStateValue } from 'react-conflux';
-import { notesContext, globalContext } from '../../store/contexts';
+import { notesContext } from '../../store/contexts';
 import { MODIFY_CURRENT_NOTE, SET_NOTE_TITLE } from '../../store/constants';
 
 class Image extends React.Component {
@@ -143,28 +141,6 @@ const Note = props => {
     dispatch({ type: SET_NOTE_TITLE, payload: e.target.value });
   };
 
-  const saveNoteOnBlur = e => {
-    if (!state.newNote) {
-      let note = state.currentNote;
-      note.note = JSON.stringify(state.currentNote.note);
-      if (state.noteTitle !== '') {
-        note.noteTitle = state.noteTitle;
-      }
-
-      axios
-        .put(`${url}/notes/${state.currentNote.id}`, note)
-        .then(res => {
-          console.log(res.data.note);
-          dispatch({
-            type: 'UPDATE_NOTE',
-            payload: res.data.note
-          });
-        })
-        .catch(err => dispatch({ type: 'UPDATE_NOTE_FAIL', payload: err }));
-    } else {
-      return false;
-    }
-  };
   // console.log(state.currentNote);
   // console.log(Value.fromJSON(initialValue));
   return (
@@ -176,7 +152,6 @@ const Note = props => {
         onChange={handleChanges}
       />
       <Editor
-        onBlur={saveNoteOnBlur}
         className="editor"
         value={state.currentNote.note}
         onChange={onChange}
@@ -214,6 +189,6 @@ const Styles = styled.div`
     border: 0;
     font-weight: 700;
     outline: none;
-    width: 50%;
+    width: 100%;
   }
 `;

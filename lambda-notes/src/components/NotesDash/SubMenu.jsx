@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 
 import { useStateValue } from 'react-conflux';
@@ -36,8 +36,8 @@ const SubMenu = ({ notes }) => {
             className="note"
             key={note.id}
           >
-            <p>{note.noteTitle}</p>
-            <p>{note.dateUpdated}</p>
+            <p className="noteLink">{note.noteTitle}</p>
+            <p className="noteLink">{note.dateUpdated}</p>
           </Link>
         );
       })}
@@ -75,6 +75,7 @@ const Styles = styled.div`
     text-decoration: none;
     font-size: 1.5rem;
     padding: 10px 10px;
+    color: black;
 
     &:nth-child(even) {
       background: #f8f8f8;

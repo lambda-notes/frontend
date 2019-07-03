@@ -4,18 +4,20 @@ import axios from 'axios';
 
 // data management
 import { useStateValue } from 'react-conflux';
-import { globalContext } from '../../store/contexts';
+import { globalContext, notesContext } from '../../store/contexts';
 import { url } from '../Auth/config';
 import {
   GET_LESSONS,
   GET_LESSONS_FAIL,
   LESSON_CLICKED,
   SPRINT_CLICKED,
-  TOGGLE_MENU
+  TOGGLE_MENU,
+  CLEAR_NOTE
 } from '../../store/constants';
 
 const Options = ({ mobile, history }) => {
   const [state, dispatch] = useStateValue(globalContext);
+  const [, notesDispatch] = useStateValue(notesContext);
   const { sprints, lessons, selectedSprint, selectedLesson, menuOpen } = state;
 
   useEffect(() => {
@@ -44,6 +46,7 @@ const Options = ({ mobile, history }) => {
   const setLessonId = (e, id) => {
     e.preventDefault();
     dispatch({ type: LESSON_CLICKED, payload: id });
+    notesDispatch({ type: CLEAR_NOTE });
 
     if (mobile) {
       dispatch({ type: TOGGLE_MENU, payload: !menuOpen });
@@ -54,10 +57,10 @@ const Options = ({ mobile, history }) => {
     e.preventDefault();
     if (!selectedSprint === id) {
       dispatch({ type: SPRINT_CLICKED, payload: null });
-      history.push('/dashboard');
+      notesDispatch({ type: CLEAR_NOTE });
     } else {
       dispatch({ type: SPRINT_CLICKED, payload: id });
-      history.push('/dashboard');
+      notesDispatch({ type: CLEAR_NOTE });
     }
   };
 

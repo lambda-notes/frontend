@@ -7,7 +7,9 @@ import {
   LESSON_CLICKED,
   SPRINT_CLICKED,
   SET_USER,
-  TOGGLE_MENU
+  TOGGLE_MENU,
+  OPEN_MODAL,
+  CLOSE_MODAL
 } from '../constants';
 
 const initialState = {
@@ -18,7 +20,9 @@ const initialState = {
   lessons: [],
   selectedLesson: null,
   selectedSprint: null,
-  menuOpen: false
+  menuOpen: false,
+  modalMessage: '',
+  modalOpen: false
 };
 
 export const globalReducer = (state = initialState, action) => {
@@ -76,7 +80,18 @@ export const globalReducer = (state = initialState, action) => {
         ...state,
         menuOpen: action.payload
       };
-
+    case OPEN_MODAL:
+      return {
+        ...state,
+        modalMessage: action.payload,
+        modalOpen: true
+      };
+    case CLOSE_MODAL:
+      return {
+        ...state,
+        modalMessage: '',
+        modalOpen: false
+      };
     default:
       return state;
   }

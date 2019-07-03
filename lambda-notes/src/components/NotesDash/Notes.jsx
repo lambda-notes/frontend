@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Note from './Note';
 import { Value } from 'slate';
@@ -11,14 +11,15 @@ import {
   SET_CURRENT_NOTE,
   NEW_NOTE,
   DELETE_NOTE,
-  ADD_NOTE
+  ADD_NOTE,
+  OPEN_MODAL
 } from '../../store/constants';
 
 const Notes = props => {
   const existingValue = JSON.parse(localStorage.getItem('content'));
   const [bool, setBool] = useState(true);
   const [state, dispatch] = useStateValue(notesContext);
-  const [globalState] = useStateValue(globalContext);
+  const [globalState, globalDispatch] = useStateValue(globalContext);
   const { selectedLesson, user } = globalState;
 
   if (existingValue && bool) {
@@ -49,8 +50,14 @@ const Notes = props => {
         let parsed = JSON.parse(res.data.note.note);
         res.data.note.note = Value.fromJSON(parsed);
         dispatch({ type: ADD_NOTE, payload: res.data.note });
+        globalDispatch({ type: OPEN_MODAL, payload: 'Your note was created' });
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        globalDispatch({
+          type: OPEN_MODAL,
+          payload: 'There was an error creating your note'
+        });
+      });
   };
 
   const deleteNote = () => {
@@ -58,9 +65,14 @@ const Notes = props => {
     axios
       .delete(`${url}/notes/${state.currentNote.id}`)
       .then(res => {
-        console.log(res.data.id);
+        globalDispatch({ type: OPEN_MODAL, payload: 'Your note was deleted' });
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        globalDispatch({
+          type: OPEN_MODAL,
+          payload: 'Your note could not be deleted'
+        });
+      });
   };
 
   const updateNote = () => {
@@ -78,8 +90,17 @@ const Notes = props => {
           type: 'UPDATE_NOTE',
           payload: res.data.note
         });
+        globalDispatch({
+          type: OPEN_MODAL,
+          payload: 'Your note was updated'
+        });
       })
-      .catch(err => dispatch({ type: 'UPDATE_NOTE_FAIL', payload: err }));
+      .catch(err => {
+        globalDispatch({
+          type: OPEN_MODAL,
+          payload: 'There was an error updating your note'
+        });
+      });
   };
 
   const newNote = e => {
