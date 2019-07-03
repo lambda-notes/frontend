@@ -17,20 +17,22 @@ const NotesDash = props => {
   const [state, dispatch] = useStateValue(notesContext);
   const [globalState] = useStateValue(globalContext);
   const { notes } = state;
-  const { selectedLesson } = globalState;
+  const { selectedLesson, user } = globalState;
 
   useEffect(() => {
-    axios
-      .get(`${url}/notes/user/2`)
-      .then(res => {
-        res.data.notes.forEach(note => {
-          let parsed = JSON.parse(note.note);
-          note.note = Value.fromJSON(parsed);
-        });
-        dispatch({ type: 'GET_NOTES', payload: res.data.notes });
-      })
-      .catch(err => dispatch({ type: 'GET_NOTES_FAIL', payload: err }));
-  }, [dispatch]);
+    if (user) {
+      axios
+        .get(`${url}/notes/user/${user.id}`)
+        .then(res => {
+          res.data.notes.forEach(note => {
+            let parsed = JSON.parse(note.note);
+            note.note = Value.fromJSON(parsed);
+          });
+          dispatch({ type: 'GET_NOTES', payload: res.data.notes });
+        })
+        .catch(err => dispatch({ type: 'GET_NOTES_FAIL', payload: err }));
+    }
+  }, [user]);
 
   const filterNotes = () => {
     return notes.filter(note => note.notesLessonID === selectedLesson);
