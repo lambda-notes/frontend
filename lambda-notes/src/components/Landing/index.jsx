@@ -1,11 +1,10 @@
 import React from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import styled from 'styled-components';
 //Conflux
-import { useStateValue } from 'react-conflux';
-
-import { globalContext } from '../../store/contexts';
-import { SET_USER } from '../../store/constants';
+// import { useStateValue } from 'react-conflux';
+// import { globalContext } from '../../store/contexts';
+// import { SET_USER } from '../../store/constants';
 
 // Firebase App (the core Firebase SDK) is always required and
 // must be listed before other Firebase SDKs
@@ -20,7 +19,7 @@ import { SET_USER } from '../../store/constants';
 // firebase.auth().useDeviceLanguage();
 
 const Landing = () => {
-  const [state, dispatch] = useStateValue(globalContext);
+  // const [state, dispatch] = useStateValue(globalContext);
   // const handleLogin = () => {
   //   firebase
   //     .auth()
@@ -98,9 +97,11 @@ const Landing = () => {
   //   console.log(state.user);
   return (
     <Styles>
-      <span>
+      <div className="background" />
+      <div className="wrapper">
         <div className="TopMain">
           <img
+            className="logo"
             src={require('./images/Lambda_Notes_Logo.png')}
             height="200px"
             alt="lambda"
@@ -111,20 +112,28 @@ const Landing = () => {
             </a>
           </div>
         </div>
-      </span>
-      <div className="mainContent">
-        <img
-          className="mainImage"
-          src={require('./images/landingImage.jpeg')}
-          height="45%"
-          width="35%"
-        />
-        <div className="mainContentRight">
-          <h1>Lambda Notes</h1>
-          <div className="mainLoginButton">
-            <a href="https://lambda-school-notes.herokuapp.com/auth/github">
-              Stay Organized
-            </a>
+
+        <div className="mainContent">
+          <div className="heroWrapper">
+            <img
+              className="mainImage"
+              src={require('./images/landingImage.jpeg')}
+              height="45%"
+              width="35%"
+              alt="landingImg"
+            />
+            <p>
+              Keep your class notes organize as you move through Lambda School.
+            </p>
+          </div>
+          <div className="mainContentRight">
+            <p className="title">Next Level Notes</p>
+
+            <div className="mainLoginButton">
+              <a href="https://lambda-school-notes.herokuapp.com/auth/github">
+                Stay Organized
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -140,10 +149,35 @@ const Landing = () => {
 //   width: 50px;
 // `;
 const Styles = styled.div`
+  p {
+    font-size: 1.8rem;
+  }
+  .title {
+    font-size: 2.5rem;
+  }
+  .heroWrapper {
+    max-width: 500px;
+    width: 100%;
+    margin-left: 20px;
+  }
   .mainContent {
     display: flex;
     flex-direction: row;
     margin-top: 50px;
+  }
+  .wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+  }
+  .background {
+    z-index: -1;
+    height: 100vh;
+    width: 100vw;
+    background-color: #0c3c78;
+    -webkit-clip-path: polygon(100% 0, 30% 100%, 100% 100%);
+    clip-path: polygon(100% 0, 30% 100%, 100% 100%);
   }
   .mainContent .mainContentRight {
     font-size: 70px;
@@ -152,54 +186,63 @@ const Styles = styled.div`
     font-family: 'Lato', sans-serif;
     margin-top: 5%;
   }
-  .mainContent .mainContentRight .mainLoginButton {
-    width: 500px;
+
+  .mainLoginButton {
+    max-width: 400px;
+    width: 100%;
     height: 100px;
     padding: 25px 20px 10px 20px;
     text-align: center;
-    border: 6px solid #f0f4f7;
+    border-right: 6px solid #f0f4f7;
+    border-bottom: 6px solid #f0f4f7;
+    border-top: 6px solid #f0f4f7;
     border-radius: 4px;
     cursor: pointer;
     background-color: rgb(214, 10, 43);
-    font-size: 35px;
+    font-size: 3rem;
     font-weight: bold;
-    margin-top: 2%;
-    margin-left: 0%;
+    margin-top: 10px;
   }
   .mainContent .mainContentRight .mainLoginButton a {
     text-decoration: none;
     color: rgb(255, 255, 255);
   }
-  .mainContent .mainImage {
-    margin-left: 10%;
+  .mainImage {
+    width: auto;
+    height: 300px;
+    margin-bottom: 10px;
     box-shadow: 1px 3px 5px gray;
   }
+  .logo {
+    width: auto;
+    height: 75px;
+  }
+
   height: 100vh;
-  span {
+  /* span {
     height: 100vh;
     border-bottom: 990px solid #0c3c78;
     border-left: 1000px solid transparent;
     padding-top: 100px;
     margin-left: 47.7%;
-  }
+  } */
   .TopMain {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 20px;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
   }
-  .TopMain .LoginButton {
-    width: 15%;
-    height: 80px;
-    padding: 15px 20px 10px 20px;
+  .LoginButton {
+    padding: 5px 10px;
     text-align: center;
     border: 6px solid #f0f4f7;
     border-radius: 4px;
     cursor: pointer;
     background-color: rgb(214, 10, 43);
-    font-size: 35px;
+    font-size: 2.5rem;
     font-weight: bold;
-    margin-top: 2%;
   }
   .TopMain .LoginButton a {
     text-decoration: none;
