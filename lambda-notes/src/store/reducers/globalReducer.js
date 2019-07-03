@@ -22,6 +22,7 @@ const initialState = {
 };
 
 export const globalReducer = (state = initialState, action) => {
+  console.log(action);
   switch (action.type) {
     case GET_USER:
       // set local storage with token?
@@ -68,6 +69,7 @@ export const globalReducer = (state = initialState, action) => {
     case SPRINT_CLICKED:
       return {
         ...state,
+        selectedLesson: null,
         selectedSprint: action.payload
       };
     case TOGGLE_MENU:

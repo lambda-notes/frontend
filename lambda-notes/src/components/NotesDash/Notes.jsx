@@ -53,7 +53,7 @@ const Notes = props => {
     }
     axios
       .post(`${url}/notes/`, {
-        notesLessonID: 1,
+        notesLessonID: selectedLesson,
         userID: 2,
         note: note,
         noteTitle: title

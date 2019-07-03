@@ -14,7 +14,7 @@ import {
   TOGGLE_MENU
 } from '../../store/constants';
 
-const Options = ({ mobile }) => {
+const Options = ({ mobile, history }) => {
   const [state, dispatch] = useStateValue(globalContext);
   const { sprints, lessons, selectedSprint, selectedLesson, menuOpen } = state;
 
@@ -52,10 +52,12 @@ const Options = ({ mobile }) => {
 
   const setSprintId = (e, id) => {
     e.preventDefault();
-    if (selectedSprint === id) {
+    if (!selectedSprint === id) {
       dispatch({ type: SPRINT_CLICKED, payload: null });
+      history.push('/dashboard');
     } else {
       dispatch({ type: SPRINT_CLICKED, payload: id });
+      history.push('/dashboard');
     }
   };
 
