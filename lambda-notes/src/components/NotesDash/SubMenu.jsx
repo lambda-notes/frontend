@@ -60,8 +60,8 @@ const Styles = styled.div`
 
   .header {
     display: flex;
-    padding: 5px 10px;
     border-bottom: 1px solid grey;
+    padding: 5px 10px;
     font-size: 1.2rem;
     font-weight: 700;
     margin-top: 38px;

@@ -166,11 +166,13 @@ const Styles = styled.div`
   margin-top: 15px;
   padding: 20px;
   border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 5px -1px rgba(0, 0, 0, 0.14);
+  -moz-box-shadow: 0px 0px 5px -1px rgba(0, 0, 0, 0.14);
+  box-shadow: 0px 0px 5px -1px rgba(0, 0, 0, 0.14);
 
   .editor {
     line-height: 1.4;
-    height: 85%;
-    min-height: calc(100vh - 223px);
+    min-height: calc(100vh - 230px);
     font-size: 1.6rem;
     margin-top: 20px;
   }
