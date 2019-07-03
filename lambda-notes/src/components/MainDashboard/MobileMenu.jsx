@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import logo from '../../assets/Lambda_Notes_Logo.png';
+import MobileMenuButton from './MobileMenuButton';
 
 const MobileNav = () => {
+  const [menuOpen, setMenu] = useState(false);
+
   return (
     <Styles>
       <img src={logo} alt="Lambda Notes Logo" />
-      <h3>Hamburger</h3>
+      <MobileMenuButton menuOpen={menuOpen} setMenu={setMenu} />
     </Styles>
   );
 };
