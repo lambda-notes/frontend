@@ -16,7 +16,7 @@ import Auth from './components/Auth';
 import MainDashboard from './components/MainDashboard';
 import Landing from './components/Landing';
 import SideNav from './components/SideNav';
-import MobileMenu from './components/MainDashboard/MobileMenu';
+import MobileNav from './components/MainDashboard/MobileNav';
 
 function App() {
   const [state, dispatch] = useStateValue(globalContext);
@@ -50,7 +50,7 @@ function App() {
         <Route path="/login" component={Auth} />
         <div className="main-view">
           {window_width <= 800 ? (
-            <Route path="/dashboard" component={MobileMenu} />
+            <Route path="/dashboard" component={MobileNav} />
           ) : (
             <Route path="/dashboard" component={SideNav} />
           )}

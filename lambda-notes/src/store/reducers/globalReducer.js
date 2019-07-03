@@ -6,7 +6,8 @@ import {
   GET_LESSONS_FAIL,
   LESSON_CLICKED,
   SPRINT_CLICKED,
-  SET_USER
+  SET_USER,
+  TOGGLE_MENU
 } from '../constants';
 
 const initialState = {
@@ -16,7 +17,8 @@ const initialState = {
   sprints: [],
   lessons: [],
   selectedLesson: null,
-  selectedSprint: null
+  selectedSprint: null,
+  menuOpen: false
 };
 
 export const globalReducer = (state = initialState, action) => {
@@ -67,6 +69,11 @@ export const globalReducer = (state = initialState, action) => {
       return {
         ...state,
         selectedSprint: action.payload
+      };
+    case TOGGLE_MENU:
+      return {
+        ...state,
+        menuOpen: action.payload
       };
 
     default:

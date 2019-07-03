@@ -1,16 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const MobileMenuButton = props => {
+const MobileMenuButton = ({ toggleMenu, menuOpen }) => {
   return (
     <Styles>
       <div
         className={
-          props.menuOpen
+          menuOpen
             ? 'hamburger-menu menu-open clickHamburgerMenu'
             : 'hamburger-menu'
         }
-        onClick={() => props.setMenu(!props.menuOpen)}
+        onClick={toggleMenu}
       >
         <span />
         <span />

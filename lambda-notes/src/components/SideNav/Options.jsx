@@ -10,13 +10,13 @@ import {
   GET_LESSONS,
   GET_LESSONS_FAIL,
   LESSON_CLICKED,
-  SPRINT_CLICKED
+  SPRINT_CLICKED,
+  TOGGLE_MENU
 } from '../../store/constants';
 
-const Options = () => {
+const Options = ({ mobile }) => {
   const [state, dispatch] = useStateValue(globalContext);
-
-  const { sprints, lessons, selectedSprint, selectedLesson } = state;
+  const { sprints, lessons, selectedSprint, selectedLesson, menuOpen } = state;
 
   useEffect(() => {
     axios
@@ -44,6 +44,10 @@ const Options = () => {
   const setLessonId = (e, id) => {
     e.preventDefault();
     dispatch({ type: LESSON_CLICKED, payload: id });
+
+    if (mobile) {
+      dispatch({ type: TOGGLE_MENU, payload: !menuOpen });
+    }
   };
 
   const setSprintId = (e, id) => {
@@ -54,8 +58,6 @@ const Options = () => {
       dispatch({ type: SPRINT_CLICKED, payload: id });
     }
   };
-
-  console.log(selectedSprint);
 
   return (
     <Styles>
@@ -94,6 +96,7 @@ export default Options;
 
 const Styles = styled.div`
   line-height: 1.5;
+  z-index: 1;
 
   h2 {
     padding: 0.4rem 2.4rem;

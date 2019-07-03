@@ -1,31 +1,31 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import logo from '../../assets/Lambda_Notes_Logo.png';
-import MobileMenuButton from './MobileMenuButton';
+import Options from '../SideNav/Options';
+import logo from './../../assets/Lambda_Notes_Logo.png';
 
-const MobileNav = () => {
-  const [menuOpen, setMenu] = useState(false);
-
+const MobileMenu = () => {
   return (
     <Styles>
-      <img src={logo} alt="Lambda Notes Logo" />
-      <MobileMenuButton menuOpen={menuOpen} setMenu={setMenu} />
+      <div>
+        <img src={logo} alt="Lambda Notes Logo" />
+        <Options mobile />
+      </div>
     </Styles>
   );
 };
 
-export default MobileNav;
+export default MobileMenu;
 
 const Styles = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  height: 70px;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  color: white;
+  top: 0;
   background: #131220;
-
-  img {
-    /* logo */
-    margin: 20px;
-    width: 80px;
-  }
+  z-index: 1;
 `;
