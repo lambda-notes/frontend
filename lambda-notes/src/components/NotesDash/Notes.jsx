@@ -14,21 +14,7 @@ const Notes = props => {
   const [bool, setBool] = useState(true);
   const [state, dispatch] = useStateValue(notesContext);
   const [globalState] = useStateValue(globalContext);
-  const { selectedLesson } = globalState;
-
-  useEffect(() => {
-    if (props.props.location.pathname.slice(11)) {
-      let index = state.notes.find(
-        note => note.id === props.props.location.pathname.slice(11)
-      );
-      if (index) {
-        dispatch({
-          type: SET_CURRENT_NOTE,
-          payload: index
-        });
-      }
-    }
-  }, [dispatch, props.props.location.pathname, state.notes]);
+  const { selectedLesson, user } = globalState;
 
   if (existingValue && bool) {
     setBool(false);
@@ -49,7 +35,7 @@ const Notes = props => {
     axios
       .post(`${url}/notes/`, {
         notesLessonID: selectedLesson,
-        userID: 2,
+        userID: user.id,
         note: note,
         noteTitle: title
       })

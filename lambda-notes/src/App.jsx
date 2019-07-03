@@ -19,7 +19,8 @@ import SideNav from './components/SideNav';
 import MobileNav from './components/MainDashboard/MobileNav';
 
 function App(props) {
-  const [, dispatch] = useStateValue(globalContext);
+  const [state, dispatch] = useStateValue(globalContext);
+  const { user } = state;
 
   // this temporarily gets the user id from the url
   useEffect(() => {
@@ -27,7 +28,7 @@ function App(props) {
       const id = props.history.location.pathname.slice(11);
       localStorage.setItem('id', id);
     }
-  }, []);
+  }, [user.id]);
 
   // get id from local storage
   useEffect(() => {
